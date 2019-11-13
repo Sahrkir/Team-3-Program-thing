@@ -87,7 +87,6 @@ public class User {
      */
     public void save() throws IOException{        
         try {
-            File file = new File("file.txt");
             PrintWriter printWriter = new PrintWriter("file.txt");
             printWriter.println(getName() + "," + getIncome() + "," + getExpenses());
             printWriter.close (); 
