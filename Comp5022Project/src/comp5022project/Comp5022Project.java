@@ -39,7 +39,7 @@ public class Comp5022Project {
                 case "AddExp":
                     System.out.println("How much money is being spent?");
                     Double exp = new Double(in.nextLine());
-                    System.out.println("How often is it being added?\n"
+                    System.out.println("How often is it being spent?\n"
                             + "Type 0 for a one-off expense, 1 for daily, 2 for monthly, and 3 for yearly");
                     
                     user.setDetails(1, exp, Integer.parseInt(in.nextLine()));
