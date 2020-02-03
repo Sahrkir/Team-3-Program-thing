@@ -15,6 +15,7 @@ import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.io.IOException;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 public class User {
     String name;
     Double balance;
@@ -40,6 +41,9 @@ public class User {
         return name;
     }
     
+    /**
+    *
+    */
     public void setDetails(int type, Double value, int interval) throws IOException{
         assert type == 0 || type == 1;
         if(interval == 0){
@@ -64,8 +68,9 @@ public class User {
                 break;
             }
             try {
-                PrintWriter printWriter = new PrintWriter("file.txt");
-                printWriter.println(dueDate + "," + interval + "," + type + "," + value);
+                FileWriter fileWriter = new FileWriter("file.txt", true);
+                PrintWriter printWriter = new PrintWriter(fileWriter);
+                printWriter.append(dueDate + "," + interval + "," + type + "," + value+"\n");
                 printWriter.close(); 
             }
             catch(IOException e){
@@ -74,62 +79,72 @@ public class User {
         }         
     }
     
+    /**
+    *
+    */
     public void update() throws FileNotFoundException, IOException{
         File tempRead = new File("temp.txt");
         File fileRead = new File("file.txt");
-        Scanner file = new Scanner(fileRead);
-        file.useDelimiter(",");
-        LocalDate currentDate = LocalDate.now();
-        while(file.hasNextLine()){
-            LocalDate tempDate = LocalDate.parse(file.next());        
-            int interval = Integer.parseInt(file.next());
-            int type = Integer.parseInt(file.next());
-            Double value = Double.parseDouble(file.next());
-        
-            LocalDate newDueDate = tempDate;
-            switch (interval) {
-                case 1:
-                    if(tempDate.getDayOfMonth() <= currentDate.getDayOfMonth()
-                            || tempDate.getMonthValue() < currentDate.getMonthValue()){
-                        newDueDate = tempDate.plusDays(1);
-                        System.out.println("yes");
-                        if(type == 0){
-                            balance += value;
-                        }else{
-                            balance -= value;
+        try (Scanner file = new Scanner(fileRead);){
+            file.useDelimiter(",|\\n");
+            LocalDate currentDate = LocalDate.now();
+            while(file.hasNext()){   
+                LocalDate tempDate = LocalDate.parse(file.next());
+                int interval = Integer.parseInt(file.next());
+                int type = Integer.parseInt(file.next());
+                Double value = Double.parseDouble(file.next());
+                LocalDate newDueDate = tempDate;                
+                //i don't know what the case switch actually does
+                switch (interval) {
+                    case 1:
+                        if(tempDate.getDayOfMonth() <= currentDate.getDayOfMonth()
+                                || tempDate.getMonthValue() < currentDate.getMonthValue()){
+                            newDueDate = tempDate.plusDays(1);
+                            if(type == 0){
+                               balance += value;
+                           }else{
+                                balance -= value;
+                            }
+                            System.out.println("1");
+                            System.out.println(balance);
                         }
-                    }
-                    break;
-                case 2:
-                   if(tempDate.getDayOfMonth() <= currentDate.getDayOfMonth()
-                           || tempDate.getMonthValue() < currentDate.getMonthValue()){
-                        newDueDate = tempDate.plusWeeks(1);
-                        if(type == 0){
-                            balance += value;
-                        }else{
-                            balance -= value;
-                       }
-                    }
-                    break;
-                case 3:
-                    if(tempDate.getDayOfMonth() <= currentDate.getDayOfMonth()
-                           || tempDate.getMonthValue() < currentDate.getMonthValue()){
-                        newDueDate = tempDate.plusMonths(1);
-                        if(type == 0){
-                          balance += value;
-                        }else{
-                            balance -= value;
+                        break;
+                    case 2:
+                       if(tempDate.getDayOfMonth() <= currentDate.getDayOfMonth()
+                               || tempDate.getMonthValue() < currentDate.getMonthValue()){
+                           newDueDate = tempDate.plusWeeks(1);
+                            if(type == 0){
+                               balance += value;
+                            }else{
+                                balance -= value;
+                           }
+                            System.out.println("2");
+                            System.out.println(balance);
                         }
-                    }
-                    break;
-                default:
-                    break;
-            }        
-            PrintWriter printWriter = new PrintWriter(tempRead);
-            printWriter.println(newDueDate + "," + interval + "," + type + "," + value);
-            printWriter.close(); 
-            }      
-        file.close();
+                        break;
+                    case 3:
+                        if(tempDate.getDayOfMonth() <= currentDate.getDayOfMonth()
+                               || tempDate.getMonthValue() < currentDate.getMonthValue()){
+                            newDueDate = tempDate.plusMonths(1);
+                            if(type == 0){
+                              balance += value;
+                            }else{
+                                balance -= value;
+                            }
+                            System.out.println("3");
+                            System.out.println(balance);
+                        }
+                        break;
+                    default:
+                        System.out.println("no!!!");
+                        break;
+                }        
+                FileWriter fileWriter = new FileWriter(tempRead, true);
+                PrintWriter printWriter = new PrintWriter(fileWriter);
+                printWriter.println(newDueDate + "," + interval + "," + type + "," + value);
+                printWriter.close(); 
+            }  
+        }       
         fileRead.delete();
         boolean success = tempRead.renameTo(fileRead);
         System.out.println(success);                
