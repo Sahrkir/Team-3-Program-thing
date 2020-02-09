@@ -26,7 +26,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="Banner" alignment="0" max="32767" attributes="0"/>
+          <Component id="Banner" max="32767" attributes="0"/>
           <Component id="Content" min="-2" max="-2" attributes="0"/>
       </Group>
     </DimensionLayout>
@@ -35,7 +35,7 @@
           <Group type="102" attributes="0">
               <Component id="Banner" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-              <Component id="Content" min="-2" pref="650" max="-2" attributes="0"/>
+              <Component id="Content" min="-2" pref="670" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -54,15 +54,15 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="AccountPanel" max="32767" attributes="0"/>
-                      <Component id="BalancePanel" alignment="0" max="32767" attributes="0"/>
-                      <Component id="IncomePanel" alignment="0" max="32767" attributes="0"/>
-                      <Component id="ExpensePanel" alignment="0" max="32767" attributes="0"/>
+              <Group type="102" alignment="0" attributes="0">
+                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
                       <Component id="newPanel" alignment="0" pref="200" max="32767" attributes="0"/>
+                      <Component id="ExpensePanel" alignment="0" max="32767" attributes="0"/>
+                      <Component id="IncomePanel" alignment="0" max="32767" attributes="0"/>
+                      <Component id="BalancePanel" alignment="0" max="32767" attributes="0"/>
+                      <Component id="AccountPanel" alignment="0" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="600" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="600" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -70,6 +70,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <Component id="AccountPanel" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                   <Component id="BalancePanel" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                   <Component id="IncomePanel" min="-2" max="-2" attributes="0"/>
@@ -77,7 +78,6 @@
                   <Component id="ExpensePanel" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                   <Component id="newPanel" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="150" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
