@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package comp5022project;
 import javax.swing.*;
 import java.awt.*;
@@ -11,10 +6,10 @@ import java.awt.*;
  * @author William Cuthbert
  */
 public class Account extends JFrame {
-
-    /**
-     * Creates new form Account
-     */
+    
+    User user;
+    int coordinateX,coordinateY,mouseX,mouseY;
+    
     public Account() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -199,6 +194,12 @@ public class Account extends JFrame {
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 BalancePanelMouseExited(evt);
             }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                BalancePanelMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                BalancePanelMouseReleased(evt);
+            }
         });
 
         balance_title.setFont(new java.awt.Font("Felix Titling", 1, 24)); // NOI18N
@@ -234,6 +235,12 @@ public class Account extends JFrame {
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 IncomePanelMouseExited(evt);
             }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                IncomePanelMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                IncomePanelMouseReleased(evt);
+            }
         });
 
         income_title.setFont(new java.awt.Font("Felix Titling", 1, 24)); // NOI18N
@@ -268,6 +275,12 @@ public class Account extends JFrame {
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 ExpensePanelMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                ExpensePanelMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                ExpensePanelMouseReleased(evt);
             }
         });
 
@@ -318,6 +331,7 @@ public class Account extends JFrame {
             .addGap(0, 100, Short.MAX_VALUE)
         );
 
+        edit_Button.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         edit_Button.setText("Edit");
         edit_Button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -325,6 +339,7 @@ public class Account extends JFrame {
             }
         });
 
+        save_Button1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         save_Button1.setText("Save");
         save_Button1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -586,11 +601,14 @@ public class Account extends JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BannerMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BannerMouseDragged
-        
+        coordinateX = evt.getXOnScreen();
+        coordinateY = evt.getYOnScreen();
+        this.setLocation(coordinateX-mouseX, coordinateY-mouseY);
     }//GEN-LAST:event_BannerMouseDragged
 
     private void BannerMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BannerMousePressed
-        
+        mouseX = evt.getX();
+        mouseY = evt.getY();
     }//GEN-LAST:event_BannerMousePressed
 
     private void AccountPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AccountPanelMouseClicked
@@ -611,7 +629,7 @@ public class Account extends JFrame {
     }//GEN-LAST:event_AccountPanelMouseExited
 
     private void AccountPanelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AccountPanelMousePressed
-
+        AccountPanel.setBackground(new Color(51,51,255));
     }//GEN-LAST:event_AccountPanelMousePressed
 
     private void BalancePanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BalancePanelMouseClicked
@@ -704,6 +722,30 @@ public class Account extends JFrame {
         select_F.setEnabled(false);
         select_Either.setEnabled(false);
     }//GEN-LAST:event_save_Button1MouseClicked
+
+    private void BalancePanelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BalancePanelMousePressed
+        BalancePanel.setBackground(new Color(51,51,255));
+    }//GEN-LAST:event_BalancePanelMousePressed
+
+    private void BalancePanelMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BalancePanelMouseReleased
+        BalancePanel.setBackground(new Color(0,0,91));
+    }//GEN-LAST:event_BalancePanelMouseReleased
+
+    private void IncomePanelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_IncomePanelMousePressed
+        IncomePanel.setBackground(new Color(51,51,255));
+    }//GEN-LAST:event_IncomePanelMousePressed
+
+    private void IncomePanelMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_IncomePanelMouseReleased
+        IncomePanel.setBackground(new Color(0,0,91));
+    }//GEN-LAST:event_IncomePanelMouseReleased
+
+    private void ExpensePanelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExpensePanelMousePressed
+        ExpensePanel.setBackground(new Color(51,51,255));
+    }//GEN-LAST:event_ExpensePanelMousePressed
+
+    private void ExpensePanelMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExpensePanelMouseReleased
+        ExpensePanel.setBackground(new Color(0,0,91));
+    }//GEN-LAST:event_ExpensePanelMouseReleased
 
     /**
      * @param args the command line arguments

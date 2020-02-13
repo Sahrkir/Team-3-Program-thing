@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package comp5022project;
 import javax.swing.*;
 import java.awt.*;
@@ -11,10 +6,10 @@ import java.awt.*;
  * @author William Cuthbert
  */
 public class Balance extends JFrame {
-
-    /**
-     * Creates new form Balance
-     */
+    
+    User user;
+    int coordinateX,coordinateY,mouseX,mouseY;
+    
     public Balance() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -31,6 +26,7 @@ public class Balance extends JFrame {
 
         Banner = new javax.swing.JPanel();
         Title = new javax.swing.JLabel();
+        Balance_title = new javax.swing.JLabel();
         Content = new javax.swing.JPanel();
         newPanel = new javax.swing.JPanel();
         ExpensePanel = new javax.swing.JPanel();
@@ -41,7 +37,9 @@ public class Balance extends JFrame {
         balance_title = new javax.swing.JLabel();
         AccountPanel = new javax.swing.JPanel();
         account_title = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        balance_Value = new javax.swing.JTextField();
+        currency_Sign = new javax.swing.JLabel();
+        currency_Sign1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(800, 800));
@@ -62,21 +60,29 @@ public class Balance extends JFrame {
         Title.setForeground(new java.awt.Color(255, 255, 255));
         Title.setText("Expense Manager");
 
+        Balance_title.setFont(new java.awt.Font("Felix Titling", 1, 36)); // NOI18N
+        Balance_title.setForeground(new java.awt.Color(240, 240, 240));
+        Balance_title.setText("Balance");
+
         javax.swing.GroupLayout BannerLayout = new javax.swing.GroupLayout(Banner);
         Banner.setLayout(BannerLayout);
         BannerLayout.setHorizontalGroup(
             BannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BannerLayout.createSequentialGroup()
-                .addGap(212, 212, 212)
+                .addGap(61, 61, 61)
                 .addComponent(Title)
-                .addContainerGap(212, Short.MAX_VALUE))
+                .addGap(71, 71, 71)
+                .addComponent(Balance_title)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         BannerLayout.setVerticalGroup(
             BannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BannerLayout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addComponent(Title)
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addGap(46, 46, 46)
+                .addGroup(BannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Title)
+                    .addComponent(Balance_title))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
 
         Content.setBackground(new java.awt.Color(0, 0, 95));
@@ -120,6 +126,12 @@ public class Balance extends JFrame {
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 ExpensePanelMouseExited(evt);
             }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                ExpensePanelMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                ExpensePanelMouseReleased(evt);
+            }
         });
 
         expense_title.setFont(new java.awt.Font("Felix Titling", 1, 24)); // NOI18N
@@ -133,7 +145,7 @@ public class Balance extends JFrame {
             .addGroup(ExpensePanelLayout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(expense_title)
-                .addContainerGap(54, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         ExpensePanelLayout.setVerticalGroup(
             ExpensePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -154,6 +166,12 @@ public class Balance extends JFrame {
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 IncomePanelMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                IncomePanelMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                IncomePanelMouseReleased(evt);
             }
         });
 
@@ -189,6 +207,12 @@ public class Balance extends JFrame {
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 BalancePanelMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                BalancePanelMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                BalancePanelMouseReleased(evt);
             }
         });
 
@@ -228,6 +252,9 @@ public class Balance extends JFrame {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 AccountPanelMousePressed(evt);
             }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                AccountPanelMouseReleased(evt);
+            }
         });
 
         account_title.setFont(new java.awt.Font("Felix Titling", 1, 24)); // NOI18N
@@ -241,7 +268,7 @@ public class Balance extends JFrame {
             .addGroup(AccountPanelLayout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(account_title)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
         AccountPanelLayout.setVerticalGroup(
             AccountPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -251,8 +278,20 @@ public class Balance extends JFrame {
                 .addContainerGap(36, Short.MAX_VALUE))
         );
 
-        jLabel1.setForeground(new java.awt.Color(240, 240, 240));
-        jLabel1.setText("Balance");
+        balance_Value.setEditable(false);
+        balance_Value.setBackground(new java.awt.Color(0, 0, 91));
+        balance_Value.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
+        balance_Value.setForeground(new java.awt.Color(240, 240, 240));
+        balance_Value.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        balance_Value.setText("0.00");
+
+        currency_Sign.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
+        currency_Sign.setForeground(new java.awt.Color(240, 240, 240));
+        currency_Sign.setText("Your current balance:");
+
+        currency_Sign1.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
+        currency_Sign1.setForeground(new java.awt.Color(240, 240, 240));
+        currency_Sign1.setText("£");
 
         javax.swing.GroupLayout ContentLayout = new javax.swing.GroupLayout(Content);
         Content.setLayout(ContentLayout);
@@ -262,25 +301,38 @@ public class Balance extends JFrame {
                 .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(newPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
                     .addComponent(ExpensePanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(IncomePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(BalancePanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(AccountPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(239, 239, 239)
-                .addComponent(jLabel1)
-                .addGap(0, 317, Short.MAX_VALUE))
+                    .addComponent(AccountPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(IncomePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(30, 30, 30)
+                .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(currency_Sign, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(ContentLayout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(currency_Sign1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(balance_Value, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         ContentLayout.setVerticalGroup(
             ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ContentLayout.createSequentialGroup()
                 .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(AccountPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(ContentLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1)))
-                .addComponent(BalancePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(IncomePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
+                        .addComponent(AccountPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(BalancePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(IncomePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(ContentLayout.createSequentialGroup()
+                        .addGap(80, 80, 80)
+                        .addComponent(currency_Sign, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(ContentLayout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(currency_Sign1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(balance_Value, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addComponent(ExpensePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(newPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -305,11 +357,14 @@ public class Balance extends JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BannerMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BannerMouseDragged
-        
+        coordinateX = evt.getXOnScreen();
+        coordinateY = evt.getYOnScreen();
+        this.setLocation(coordinateX-mouseX, coordinateY-mouseY);
     }//GEN-LAST:event_BannerMouseDragged
 
     private void BannerMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BannerMousePressed
-        
+        mouseX = evt.getX();
+        mouseY = evt.getY();
     }//GEN-LAST:event_BannerMousePressed
 
     private void newPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newPanelMouseClicked
@@ -393,8 +448,36 @@ public class Balance extends JFrame {
     }//GEN-LAST:event_AccountPanelMouseExited
 
     private void AccountPanelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AccountPanelMousePressed
-
+        AccountPanel.setBackground(new Color(51,51,255));
     }//GEN-LAST:event_AccountPanelMousePressed
+
+    private void AccountPanelMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AccountPanelMouseReleased
+        AccountPanel.setBackground(new Color(0,0,91));
+    }//GEN-LAST:event_AccountPanelMouseReleased
+
+    private void BalancePanelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BalancePanelMousePressed
+        BalancePanel.setBackground(new Color(51,51,255));
+    }//GEN-LAST:event_BalancePanelMousePressed
+
+    private void BalancePanelMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BalancePanelMouseReleased
+        BalancePanel.setBackground(new Color(0,0,91));
+    }//GEN-LAST:event_BalancePanelMouseReleased
+
+    private void IncomePanelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_IncomePanelMousePressed
+        IncomePanel.setBackground(new Color(51,51,255));
+    }//GEN-LAST:event_IncomePanelMousePressed
+
+    private void IncomePanelMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_IncomePanelMouseReleased
+        IncomePanel.setBackground(new Color(0,0,91));
+    }//GEN-LAST:event_IncomePanelMouseReleased
+
+    private void ExpensePanelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExpensePanelMousePressed
+        ExpensePanel.setBackground(new Color(51,51,255));
+    }//GEN-LAST:event_ExpensePanelMousePressed
+
+    private void ExpensePanelMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExpensePanelMouseReleased
+        ExpensePanel.setBackground(new Color(0,0,91));
+    }//GEN-LAST:event_ExpensePanelMouseReleased
 
     /**
      * @param args the command line arguments
@@ -434,16 +517,19 @@ public class Balance extends JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel AccountPanel;
     private javax.swing.JPanel BalancePanel;
+    private javax.swing.JLabel Balance_title;
     private javax.swing.JPanel Banner;
     private javax.swing.JPanel Content;
     private javax.swing.JPanel ExpensePanel;
     private javax.swing.JPanel IncomePanel;
     private javax.swing.JLabel Title;
     private javax.swing.JLabel account_title;
+    private javax.swing.JTextField balance_Value;
     private javax.swing.JLabel balance_title;
+    private javax.swing.JLabel currency_Sign;
+    private javax.swing.JLabel currency_Sign1;
     private javax.swing.JLabel expense_title;
     private javax.swing.JLabel income_title;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel newPanel;
     // End of variables declaration//GEN-END:variables
 }

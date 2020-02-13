@@ -1,22 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package comp5022project;
 import javax.swing.*;
 import java.awt.*;
+import java.time.LocalDate;
+import java.time.LocalTime;
 /**
  *
  * @author William Cuthbert
  */
 public class Incomes extends JFrame {
 
-    /**
-     * Creates new form Incomes
-     */
+    int coordinateX,coordinateY,mouseX,mouseY;
+    
     public Incomes() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -30,7 +27,8 @@ public class Incomes extends JFrame {
 
         Banner = new javax.swing.JPanel();
         Title = new javax.swing.JLabel();
-        Content3 = new javax.swing.JPanel();
+        Incomes_title = new javax.swing.JLabel();
+        Content = new javax.swing.JPanel();
         newPanel3 = new javax.swing.JPanel();
         ExpensePanel = new javax.swing.JPanel();
         expense_title = new javax.swing.JLabel();
@@ -40,7 +38,10 @@ public class Incomes extends JFrame {
         balance_title = new javax.swing.JLabel();
         AccountPanel = new javax.swing.JPanel();
         account_title = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        currentIncDetails = new javax.swing.JTextArea();
+        currentInc = new javax.swing.JLabel();
+        newIncButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(800, 800));
@@ -62,25 +63,33 @@ public class Incomes extends JFrame {
         Title.setForeground(new java.awt.Color(255, 255, 255));
         Title.setText("Expense Manager");
 
+        Incomes_title.setFont(new java.awt.Font("Felix Titling", 1, 36)); // NOI18N
+        Incomes_title.setForeground(new java.awt.Color(240, 240, 240));
+        Incomes_title.setText("Incomes");
+
         javax.swing.GroupLayout BannerLayout = new javax.swing.GroupLayout(Banner);
         Banner.setLayout(BannerLayout);
         BannerLayout.setHorizontalGroup(
             BannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BannerLayout.createSequentialGroup()
-                .addGap(212, 212, 212)
+                .addGap(67, 67, 67)
                 .addComponent(Title)
-                .addContainerGap(212, Short.MAX_VALUE))
+                .addGap(85, 85, 85)
+                .addComponent(Incomes_title)
+                .addContainerGap(94, Short.MAX_VALUE))
         );
         BannerLayout.setVerticalGroup(
             BannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BannerLayout.createSequentialGroup()
                 .addGap(45, 45, 45)
-                .addComponent(Title)
+                .addGroup(BannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Title)
+                    .addComponent(Incomes_title))
                 .addContainerGap(52, Short.MAX_VALUE))
         );
 
-        Content3.setBackground(new java.awt.Color(0, 0, 95));
-        Content3.setPreferredSize(new java.awt.Dimension(800, 800));
+        Content.setBackground(new java.awt.Color(0, 0, 95));
+        Content.setPreferredSize(new java.awt.Dimension(800, 800));
 
         newPanel3.setBackground(new java.awt.Color(0, 0, 95));
         newPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -120,6 +129,12 @@ public class Incomes extends JFrame {
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 ExpensePanelMouseExited(evt);
             }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                ExpensePanelMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                ExpensePanelMouseReleased(evt);
+            }
         });
 
         expense_title.setFont(new java.awt.Font("Felix Titling", 1, 24)); // NOI18N
@@ -155,6 +170,12 @@ public class Incomes extends JFrame {
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 IncomePanelMouseExited(evt);
             }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                IncomePanelMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                IncomePanelMouseReleased(evt);
+            }
         });
 
         income_title.setFont(new java.awt.Font("Felix Titling", 1, 24)); // NOI18N
@@ -189,6 +210,12 @@ public class Incomes extends JFrame {
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 BalancePanelMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                BalancePanelMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                BalancePanelMouseReleased(evt);
             }
         });
 
@@ -228,6 +255,9 @@ public class Incomes extends JFrame {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 AccountPanelMousePressed(evt);
             }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                AccountPanelMouseReleased(evt);
+            }
         });
 
         account_title.setFont(new java.awt.Font("Felix Titling", 1, 24)); // NOI18N
@@ -251,40 +281,74 @@ public class Incomes extends JFrame {
                 .addContainerGap(36, Short.MAX_VALUE))
         );
 
-        jLabel1.setForeground(new java.awt.Color(240, 240, 240));
-        jLabel1.setText("Incomes");
+        currentIncDetails.setEditable(false);
+        currentIncDetails.setColumns(20);
+        currentIncDetails.setFont(new java.awt.Font("Monospaced", 1, 14)); // NOI18N
+        currentIncDetails.setRows(5);
+        currentIncDetails.setText("Work McDonalds £53.55 13/02/2020 20:45\nLoan Student Finance £1000 27/01/2019 08:31");
+        jScrollPane1.setViewportView(currentIncDetails);
 
-        javax.swing.GroupLayout Content3Layout = new javax.swing.GroupLayout(Content3);
-        Content3.setLayout(Content3Layout);
-        Content3Layout.setHorizontalGroup(
-            Content3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Content3Layout.createSequentialGroup()
-                .addGroup(Content3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(newPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+        currentInc.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        currentInc.setForeground(new java.awt.Color(240, 240, 240));
+        currentInc.setText("Current Incomes:");
+
+        newIncButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        newIncButton.setText("Add a new income");
+        newIncButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                newIncButtonMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout ContentLayout = new javax.swing.GroupLayout(Content);
+        Content.setLayout(ContentLayout);
+        ContentLayout.setHorizontalGroup(
+            ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ContentLayout.createSequentialGroup()
+                .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(ExpensePanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(IncomePanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(BalancePanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(AccountPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(235, 235, 235)
-                .addComponent(jLabel1)
-                .addGap(0, 317, Short.MAX_VALUE))
+                    .addComponent(AccountPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(newPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))
+                .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ContentLayout.createSequentialGroup()
+                        .addGap(203, 203, 203)
+                        .addComponent(newIncButton, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ContentLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                        .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ContentLayout.createSequentialGroup()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 520, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(37, 37, 37))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ContentLayout.createSequentialGroup()
+                                .addComponent(currentInc, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap())))))
         );
-        Content3Layout.setVerticalGroup(
-            Content3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Content3Layout.createSequentialGroup()
-                .addGroup(Content3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        ContentLayout.setVerticalGroup(
+            ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ContentLayout.createSequentialGroup()
+                .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(AccountPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(Content3Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ContentLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel1)))
-                .addGap(0, 0, 0)
-                .addComponent(BalancePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(IncomePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(ExpensePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(newPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(currentInc, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)))
+                .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ContentLayout.createSequentialGroup()
+                        .addComponent(BalancePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(IncomePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(ExpensePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(newPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(ContentLayout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34)
+                        .addComponent(newIncButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(150, 150, 150))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -292,25 +356,28 @@ public class Incomes extends JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(Banner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(Content3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(Content, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(Banner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(Content3, javax.swing.GroupLayout.PREFERRED_SIZE, 670, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(Content, javax.swing.GroupLayout.PREFERRED_SIZE, 670, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void BannerMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BannerMouseDragged
-
+        coordinateX = evt.getXOnScreen();
+        coordinateY = evt.getYOnScreen();
+        this.setLocation(coordinateX-mouseX, coordinateY-mouseY);
     }//GEN-LAST:event_BannerMouseDragged
 
     private void BannerMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BannerMousePressed
-
+        mouseX = evt.getX();
+        mouseY = evt.getY();
     }//GEN-LAST:event_BannerMousePressed
 
     private void newPanel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newPanel3MouseClicked
@@ -394,8 +461,40 @@ public class Incomes extends JFrame {
     }//GEN-LAST:event_AccountPanelMouseExited
 
     private void AccountPanelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AccountPanelMousePressed
-
+        AccountPanel.setBackground(new Color(51,51,255));
     }//GEN-LAST:event_AccountPanelMousePressed
+
+    private void newIncButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newIncButtonMouseClicked
+        
+    }//GEN-LAST:event_newIncButtonMouseClicked
+
+    private void BalancePanelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BalancePanelMousePressed
+        BalancePanel.setBackground(new Color(51,51,255));
+    }//GEN-LAST:event_BalancePanelMousePressed
+
+    private void IncomePanelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_IncomePanelMousePressed
+        IncomePanel.setBackground(new Color(51,51,255));
+    }//GEN-LAST:event_IncomePanelMousePressed
+
+    private void ExpensePanelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExpensePanelMousePressed
+        ExpensePanel.setBackground(new Color(51,51,255));
+    }//GEN-LAST:event_ExpensePanelMousePressed
+
+    private void AccountPanelMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AccountPanelMouseReleased
+        AccountPanel.setBackground(new Color(0,0,91));
+    }//GEN-LAST:event_AccountPanelMouseReleased
+
+    private void BalancePanelMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BalancePanelMouseReleased
+        BalancePanel.setBackground(new Color(0,0,91));
+    }//GEN-LAST:event_BalancePanelMouseReleased
+
+    private void IncomePanelMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_IncomePanelMouseReleased
+        IncomePanel.setBackground(new Color(51,51,255));
+    }//GEN-LAST:event_IncomePanelMouseReleased
+
+    private void ExpensePanelMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExpensePanelMouseReleased
+        ExpensePanel.setBackground(new Color(51,51,255));
+    }//GEN-LAST:event_ExpensePanelMouseReleased
 
     /**
      * @param args the command line arguments
@@ -436,17 +535,19 @@ public class Incomes extends JFrame {
     private javax.swing.JPanel AccountPanel;
     private javax.swing.JPanel BalancePanel;
     private javax.swing.JPanel Banner;
-    private javax.swing.JPanel Content2;
-    private javax.swing.JPanel Content3;
+    private javax.swing.JPanel Content;
     private javax.swing.JPanel ExpensePanel;
     private javax.swing.JPanel IncomePanel;
+    private javax.swing.JLabel Incomes_title;
     private javax.swing.JLabel Title;
     private javax.swing.JLabel account_title;
     private javax.swing.JLabel balance_title;
+    private javax.swing.JLabel currentInc;
+    private javax.swing.JTextArea currentIncDetails;
     private javax.swing.JLabel expense_title;
     private javax.swing.JLabel income_title;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel newPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton newIncButton;
     private javax.swing.JPanel newPanel3;
     // End of variables declaration//GEN-END:variables
 }

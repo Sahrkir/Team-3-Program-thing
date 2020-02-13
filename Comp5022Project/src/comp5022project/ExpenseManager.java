@@ -13,6 +13,7 @@ import java.awt.*;
 public class ExpenseManager extends JFrame {
 
     int mouseX, mouseY, coordinateX, coordinateY;
+    
     public ExpenseManager() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -295,7 +296,7 @@ public class ExpenseManager extends JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void AccountPanelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AccountPanelMousePressed
-
+        AccountPanel.setBackground(new Color(51,51,255));
     }//GEN-LAST:event_AccountPanelMousePressed
 
     private void AccountPanelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AccountPanelMouseExited
@@ -389,6 +390,33 @@ public class ExpenseManager extends JFrame {
         this.setLocation(coordinateX-mouseX, coordinateY-mouseY);
     }//GEN-LAST:event_BannerMouseDragged
 
+    private void AccountPanelMouseReleased(java.awt.event.MouseEvent evt) {                                           
+        AccountPanel.setBackground(new Color(0,0,91));
+    }                                          
+
+    private void BalancePanelMousePressed(java.awt.event.MouseEvent evt) {                                          
+        BalancePanel.setBackground(new Color(51,51,255));
+    }                                         
+
+    private void BalancePanelMouseReleased(java.awt.event.MouseEvent evt) {                                           
+        BalancePanel.setBackground(new Color(0,0,91));
+    }                                          
+
+    private void IncomePanelMousePressed(java.awt.event.MouseEvent evt) {                                         
+        IncomePanel.setBackground(new Color(51,51,255));
+    }                                        
+
+    private void IncomePanelMouseReleased(java.awt.event.MouseEvent evt) {                                          
+        IncomePanel.setBackground(new Color(0,0,91));
+    }                                         
+
+    private void ExpensePanelMousePressed(java.awt.event.MouseEvent evt) {                                          
+        ExpensePanel.setBackground(new Color(51,51,255));
+    }                                         
+
+    private void ExpensePanelMouseReleased(java.awt.event.MouseEvent evt) {                                           
+        ExpensePanel.setBackground(new Color(0,0,91));
+    }
     /**
      * @param args the command line arguments
      */
