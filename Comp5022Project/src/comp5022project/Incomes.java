@@ -1,14 +1,14 @@
 package comp5022project;
 import javax.swing.*;
 import java.awt.*;
-import java.time.LocalDate;
-import java.time.LocalTime;
+import java.time.*;
 /**
  *
  * @author William Cuthbert
  */
 public class Incomes extends JFrame {
-
+    
+    User user;
     int coordinateX,coordinateY,mouseX,mouseY;
     
     public Incomes() {

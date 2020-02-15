@@ -696,31 +696,11 @@ public class Account extends JFrame {
     }//GEN-LAST:event_newPanelMouseExited
 
     private void edit_ButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_edit_ButtonMouseClicked
-        first_Name_txt1.setEditable(true);
-        last_Name_txt.setEditable(true);
-        education_txt.setEditable(true);
-        email_address.setEditable(true);
-        mobile_No_txt.setEditable(true);
-        home_No_txt.setEditable(true);
-        address_txt.setEditable(true);
-        calendar.setEnabled(true);
-        select_M.setEnabled(true);
-        select_F.setEnabled(true);
-        select_Either.setEnabled(true);
+        editables();
     }//GEN-LAST:event_edit_ButtonMouseClicked
 
     private void save_Button1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_save_Button1MouseClicked
-        first_Name_txt1.setEditable(false);
-        last_Name_txt.setEditable(false);
-        education_txt.setEditable(false);
-        email_address.setEditable(false);
-        mobile_No_txt.setEditable(false);
-        home_No_txt.setEditable(false);
-        address_txt.setEditable(false);
-        calendar.setEnabled(false);
-        select_M.setEnabled(false);
-        select_F.setEnabled(false);
-        select_Either.setEnabled(false);
+        non_Editables();
     }//GEN-LAST:event_save_Button1MouseClicked
 
     private void BalancePanelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BalancePanelMousePressed
@@ -747,6 +727,33 @@ public class Account extends JFrame {
         ExpensePanel.setBackground(new Color(0,0,91));
     }//GEN-LAST:event_ExpensePanelMouseReleased
 
+    void editables() {
+        first_Name_txt1.setEditable(true);
+        last_Name_txt.setEditable(true);
+        education_txt.setEditable(true);
+        email_address.setEditable(true);
+        mobile_No_txt.setEditable(true);
+        home_No_txt.setEditable(true);
+        address_txt.setEditable(true);
+        calendar.setEnabled(true);
+        select_M.setEnabled(true);
+        select_F.setEnabled(true);
+        select_Either.setEnabled(true);
+    }
+    
+    void non_Editables() {
+        first_Name_txt1.setEditable(false);
+        last_Name_txt.setEditable(false);
+        education_txt.setEditable(false);
+        email_address.setEditable(false);
+        mobile_No_txt.setEditable(false);
+        home_No_txt.setEditable(false);
+        address_txt.setEditable(false);
+        calendar.setEnabled(false);
+        select_M.setEnabled(false);
+        select_F.setEnabled(false);
+        select_Either.setEnabled(false);
+    }
     /**
      * @param args the command line arguments
      */
