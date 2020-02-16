@@ -16,7 +16,7 @@ public class Comp5022Project {
     /**
      * @param args the command line arguments
      */
-    void Inc_Exp() throws IOException {
+    public static void main(String[] args) throws IOException{
         boolean menuActive = true;
         Date date = new Date();
         Scanner in = new Scanner(System.in);  
@@ -55,11 +55,5 @@ public class Comp5022Project {
                     break;
             }
         } 
-    }
-    
-    public static void main(String[] args) {
-        ExpenseManager em = new ExpenseManager();
-        em.setVisible(true);
-    }
-           
+    }    
 }

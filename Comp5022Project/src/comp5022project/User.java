@@ -83,6 +83,13 @@ public class User {
     *
     */
     public void update() throws FileNotFoundException, IOException{
+        //Read in the user's balance
+        File balRead = new File("balance.txt");
+        Scanner balScan = new Scanner(balRead);
+        Double tempBalance = Double.parseDouble(balScan.next());
+        setBalance(tempBalance);
+        
+        //Add the user's income and expenses to the balance
         File tempRead = new File("temp.txt");
         File fileRead = new File("file.txt");
         try (Scanner file = new Scanner(fileRead);){
@@ -105,8 +112,6 @@ public class User {
                            }else{
                                 balance -= value;
                             }
-                            System.out.println("1");
-                            System.out.println(balance);
                         }
                         break;
                     case 2:
@@ -118,8 +123,6 @@ public class User {
                             }else{
                                 balance -= value;
                            }
-                            System.out.println("2");
-                            System.out.println(balance);
                         }
                         break;
                     case 3:
@@ -131,8 +134,6 @@ public class User {
                             }else{
                                 balance -= value;
                             }
-                            System.out.println("3");
-                            System.out.println(balance);
                         }
                         break;
                     default:
@@ -146,6 +147,7 @@ public class User {
             }  
         }       
         fileRead.delete();
+        saveBalance();
         boolean success = tempRead.renameTo(fileRead);
         System.out.println(success);                
     }
@@ -164,20 +166,18 @@ public class User {
      */
     public void setBalance(Double b){
         balance = b;
+        saveBalance();
     } 
     
     /**
-     * Saves name, income and expenses to a text file
-     */
-    public void save() throws IOException{        
-        try {
-            PrintWriter printWriter = new PrintWriter("file.txt");
-            //printWriter.println(getName() + "," + getIncome() + "," + getExpenses());
-            printWriter.close (); 
-        }
-        catch(IOException e){
+     * Saves balance to a text file
+     */    
+    public void saveBalance(){        
+        try (PrintWriter printWriter = new PrintWriter("balance.txt")) {
+            printWriter.println(String.valueOf(getBalance()));
+        } 
+        catch(FileNotFoundException e){
             System.out.println("File not found");
-        }        
-          
+        }                  
     }
 }
