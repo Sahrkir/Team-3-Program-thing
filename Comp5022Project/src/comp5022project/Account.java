@@ -28,6 +28,16 @@ public class Account extends JFrame {
         Title = new javax.swing.JLabel();
         Account_title = new javax.swing.JLabel();
         Content = new javax.swing.JPanel();
+        AccountPanel = new javax.swing.JPanel();
+        account_title = new javax.swing.JLabel();
+        BalancePanel = new javax.swing.JPanel();
+        balance_title = new javax.swing.JLabel();
+        IncomePanel = new javax.swing.JPanel();
+        income_title = new javax.swing.JLabel();
+        ExpensePanel = new javax.swing.JPanel();
+        expense_title = new javax.swing.JLabel();
+        trackPanel = new javax.swing.JPanel();
+        track_title = new javax.swing.JLabel();
         Address = new javax.swing.JLabel();
         Firstname = new javax.swing.JLabel();
         Lastname = new javax.swing.JLabel();
@@ -37,15 +47,6 @@ public class Account extends JFrame {
         Gender = new javax.swing.JLabel();
         Mobile = new javax.swing.JLabel();
         Home = new javax.swing.JLabel();
-        AccountPanel = new javax.swing.JPanel();
-        account_title = new javax.swing.JLabel();
-        BalancePanel = new javax.swing.JPanel();
-        balance_title = new javax.swing.JLabel();
-        IncomePanel = new javax.swing.JPanel();
-        income_title = new javax.swing.JLabel();
-        ExpensePanel = new javax.swing.JPanel();
-        expense_title = new javax.swing.JLabel();
-        newPanel = new javax.swing.JPanel();
         edit_Button = new javax.swing.JButton();
         save_Button1 = new javax.swing.JButton();
         home_No_txt = new javax.swing.JTextField();
@@ -62,9 +63,10 @@ public class Account extends JFrame {
         select_F = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(800, 800));
+        setMinimumSize(new java.awt.Dimension(800, 800));
 
         Banner.setBackground(new java.awt.Color(51, 51, 255));
+        Banner.setPreferredSize(new java.awt.Dimension(800, 140));
         Banner.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
                 BannerMouseDragged(evt);
@@ -102,47 +104,11 @@ public class Account extends JFrame {
                 .addGroup(BannerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Title)
                     .addComponent(Account_title))
-                .addContainerGap(54, Short.MAX_VALUE))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         Content.setBackground(new java.awt.Color(0, 0, 95));
         Content.setPreferredSize(new java.awt.Dimension(800, 800));
-
-        Address.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        Address.setForeground(new java.awt.Color(240, 240, 240));
-        Address.setText("Address:");
-
-        Firstname.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        Firstname.setForeground(new java.awt.Color(240, 240, 240));
-        Firstname.setText("First Name: ");
-
-        Lastname.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        Lastname.setForeground(new java.awt.Color(240, 240, 240));
-        Lastname.setText("Last Name: ");
-
-        DOB.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        DOB.setForeground(new java.awt.Color(240, 240, 240));
-        DOB.setText("Date of Birth:");
-
-        Education.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        Education.setForeground(new java.awt.Color(240, 240, 240));
-        Education.setText("Education:");
-
-        Email_address.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        Email_address.setForeground(new java.awt.Color(240, 240, 240));
-        Email_address.setText("E-mail address:");
-
-        Gender.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        Gender.setForeground(new java.awt.Color(240, 240, 240));
-        Gender.setText("Gender: ");
-
-        Mobile.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        Mobile.setForeground(new java.awt.Color(240, 240, 240));
-        Mobile.setText("Mobile No: ");
-
-        Home.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        Home.setForeground(new java.awt.Color(240, 240, 240));
-        Home.setText("Home No: ");
 
         AccountPanel.setBackground(new java.awt.Color(0, 0, 95));
         AccountPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -159,6 +125,9 @@ public class Account extends JFrame {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 AccountPanelMousePressed(evt);
             }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                AccountPanelMouseReleased(evt);
+            }
         });
 
         account_title.setFont(new java.awt.Font("Felix Titling", 1, 24)); // NOI18N
@@ -171,8 +140,8 @@ public class Account extends JFrame {
             AccountPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(AccountPanelLayout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addComponent(account_title)
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addComponent(account_title, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(29, Short.MAX_VALUE))
         );
         AccountPanelLayout.setVerticalGroup(
             AccountPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -212,7 +181,7 @@ public class Account extends JFrame {
             BalancePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(BalancePanelLayout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addComponent(balance_title)
+                .addComponent(balance_title, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         BalancePanelLayout.setVerticalGroup(
@@ -253,7 +222,7 @@ public class Account extends JFrame {
             IncomePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(IncomePanelLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addComponent(income_title)
+                .addComponent(income_title, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         IncomePanelLayout.setVerticalGroup(
@@ -294,8 +263,8 @@ public class Account extends JFrame {
             ExpensePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ExpensePanelLayout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addComponent(expense_title)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(expense_title, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         ExpensePanelLayout.setVerticalGroup(
             ExpensePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -305,31 +274,83 @@ public class Account extends JFrame {
                 .addContainerGap(35, Short.MAX_VALUE))
         );
 
-        newPanel.setBackground(new java.awt.Color(0, 0, 95));
-        newPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        newPanel.setPreferredSize(new java.awt.Dimension(166, 104));
-        newPanel.addMouseListener(new java.awt.event.MouseAdapter() {
+        trackPanel.setBackground(new java.awt.Color(0, 0, 95));
+        trackPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        trackPanel.setPreferredSize(new java.awt.Dimension(166, 104));
+        trackPanel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                newPanelMouseClicked(evt);
+                trackPanelMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                newPanelMouseEntered(evt);
+                trackPanelMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                newPanelMouseExited(evt);
+                trackPanelMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                trackPanelMousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                trackPanelMouseReleased(evt);
             }
         });
 
-        javax.swing.GroupLayout newPanelLayout = new javax.swing.GroupLayout(newPanel);
-        newPanel.setLayout(newPanelLayout);
-        newPanelLayout.setHorizontalGroup(
-            newPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+        track_title.setFont(new java.awt.Font("Felix Titling", 1, 24)); // NOI18N
+        track_title.setForeground(new java.awt.Color(255, 255, 255));
+        track_title.setText("Track");
+
+        javax.swing.GroupLayout trackPanelLayout = new javax.swing.GroupLayout(trackPanel);
+        trackPanel.setLayout(trackPanelLayout);
+        trackPanelLayout.setHorizontalGroup(
+            trackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(trackPanelLayout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(track_title, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        newPanelLayout.setVerticalGroup(
-            newPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+        trackPanelLayout.setVerticalGroup(
+            trackPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(trackPanelLayout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addComponent(track_title)
+                .addContainerGap(35, Short.MAX_VALUE))
         );
+
+        Address.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        Address.setForeground(new java.awt.Color(240, 240, 240));
+        Address.setText("Address:");
+
+        Firstname.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        Firstname.setForeground(new java.awt.Color(240, 240, 240));
+        Firstname.setText("First Name: ");
+
+        Lastname.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        Lastname.setForeground(new java.awt.Color(240, 240, 240));
+        Lastname.setText("Last Name: ");
+
+        DOB.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        DOB.setForeground(new java.awt.Color(240, 240, 240));
+        DOB.setText("Date of Birth:");
+
+        Education.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        Education.setForeground(new java.awt.Color(240, 240, 240));
+        Education.setText("Education:");
+
+        Email_address.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        Email_address.setForeground(new java.awt.Color(240, 240, 240));
+        Email_address.setText("E-mail address:");
+
+        Gender.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        Gender.setForeground(new java.awt.Color(240, 240, 240));
+        Gender.setText("Gender: ");
+
+        Mobile.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        Mobile.setForeground(new java.awt.Color(240, 240, 240));
+        Mobile.setText("Mobile No: ");
+
+        Home.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        Home.setForeground(new java.awt.Color(240, 240, 240));
+        Home.setText("Home No: ");
 
         edit_Button.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         edit_Button.setText("Edit");
@@ -471,7 +492,7 @@ public class Account extends JFrame {
                         .addComponent(IncomePanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(BalancePanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(AccountPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(newPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))
+                        .addComponent(trackPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))
                     .addGap(77, 77, 77)
                     .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(ContentLayout.createSequentialGroup()
@@ -534,7 +555,7 @@ public class Account extends JFrame {
                     .addGap(0, 0, 0)
                     .addComponent(ExpensePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, 0)
-                    .addComponent(newPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(trackPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(ContentLayout.createSequentialGroup()
                     .addGap(32, 32, 32)
                     .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -594,7 +615,7 @@ public class Account extends JFrame {
         .addGroup(layout.createSequentialGroup()
             .addComponent(Banner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGap(0, 0, 0)
-            .addComponent(Content, javax.swing.GroupLayout.PREFERRED_SIZE, 650, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(Content, javax.swing.GroupLayout.PREFERRED_SIZE, 660, javax.swing.GroupLayout.PREFERRED_SIZE))
     );
 
     pack();
@@ -683,17 +704,17 @@ public class Account extends JFrame {
         ExpensePanel.setBackground(new Color(0,0,95));
     }//GEN-LAST:event_ExpensePanelMouseExited
 
-    private void newPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newPanelMouseClicked
+    private void trackPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_trackPanelMouseClicked
 
-    }//GEN-LAST:event_newPanelMouseClicked
+    }//GEN-LAST:event_trackPanelMouseClicked
 
-    private void newPanelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newPanelMouseEntered
-        newPanel.setBackground(new Color(51,51,255));
-    }//GEN-LAST:event_newPanelMouseEntered
+    private void trackPanelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_trackPanelMouseEntered
+        trackPanel.setBackground(new Color(51,51,255));
+    }//GEN-LAST:event_trackPanelMouseEntered
 
-    private void newPanelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newPanelMouseExited
-        newPanel.setBackground(new Color(0,0,95));
-    }//GEN-LAST:event_newPanelMouseExited
+    private void trackPanelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_trackPanelMouseExited
+        trackPanel.setBackground(new Color(0,0,95));
+    }//GEN-LAST:event_trackPanelMouseExited
 
     private void edit_ButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_edit_ButtonMouseClicked
         editables();
@@ -726,6 +747,18 @@ public class Account extends JFrame {
     private void ExpensePanelMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExpensePanelMouseReleased
         ExpensePanel.setBackground(new Color(0,0,91));
     }//GEN-LAST:event_ExpensePanelMouseReleased
+
+    private void trackPanelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_trackPanelMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_trackPanelMousePressed
+
+    private void trackPanelMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_trackPanelMouseReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_trackPanelMouseReleased
+
+    private void AccountPanelMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AccountPanelMouseReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_AccountPanelMouseReleased
 
     void editables() {
         first_Name_txt1.setEditable(true);
@@ -821,10 +854,11 @@ public class Account extends JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField last_Name_txt;
     private javax.swing.JTextField mobile_No_txt;
-    private javax.swing.JPanel newPanel;
     private javax.swing.JButton save_Button1;
     private javax.swing.JRadioButton select_Either;
     private javax.swing.JRadioButton select_F;
     private javax.swing.JRadioButton select_M;
+    private javax.swing.JPanel trackPanel;
+    private javax.swing.JLabel track_title;
     // End of variables declaration//GEN-END:variables
 }
