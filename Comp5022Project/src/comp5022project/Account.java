@@ -705,7 +705,12 @@ public class Account extends JFrame {
     }//GEN-LAST:event_ExpensePanelMouseExited
 
     private void trackPanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_trackPanelMouseClicked
-
+        trackExpensesForm tef = new trackExpensesForm();
+        tef.setVisible(true);
+        tef.pack();
+        tef.setLocationRelativeTo(null);
+        tef.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.dispose();
     }//GEN-LAST:event_trackPanelMouseClicked
 
     private void trackPanelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_trackPanelMouseEntered
@@ -749,15 +754,15 @@ public class Account extends JFrame {
     }//GEN-LAST:event_ExpensePanelMouseReleased
 
     private void trackPanelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_trackPanelMousePressed
-        // TODO add your handling code here:
+        trackPanel.setBackground(new Color(51,51,255));
     }//GEN-LAST:event_trackPanelMousePressed
 
     private void trackPanelMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_trackPanelMouseReleased
-        // TODO add your handling code here:
+        trackPanel.setBackground(new Color(51,51,255));
     }//GEN-LAST:event_trackPanelMouseReleased
 
     private void AccountPanelMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AccountPanelMouseReleased
-        // TODO add your handling code here:
+        AccountPanel.setBackground(new Color(51,51,255));
     }//GEN-LAST:event_AccountPanelMouseReleased
 
     void editables() {

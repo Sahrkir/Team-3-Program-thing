@@ -429,39 +429,39 @@ public class ExpenseManager extends JFrame {
     }//GEN-LAST:event_BannerMouseDragged
 
     private void trackPanelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_trackPanelMousePressed
-        // TODO add your handling code here:
+        trackPanel.setBackground(new Color(51,51,255));
     }//GEN-LAST:event_trackPanelMousePressed
 
     private void trackPanelMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_trackPanelMouseReleased
-        // TODO add your handling code here:
+        trackPanel.setBackground(new Color(0,0,91));
     }//GEN-LAST:event_trackPanelMouseReleased
 
     private void AccountPanelMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AccountPanelMouseReleased
-        // TODO add your handling code here:
+        AccountPanel.setBackground(new Color(0,0,91));
     }//GEN-LAST:event_AccountPanelMouseReleased
 
     private void BalancePanelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BalancePanelMousePressed
-        // TODO add your handling code here:
+        BalancePanel.setBackground(new Color(51,51,255));
     }//GEN-LAST:event_BalancePanelMousePressed
 
     private void BalancePanelMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BalancePanelMouseReleased
-        // TODO add your handling code here:
+        BalancePanel.setBackground(new Color(0,0,91));
     }//GEN-LAST:event_BalancePanelMouseReleased
 
     private void IncomePanelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_IncomePanelMousePressed
-        // TODO add your handling code here:
+        IncomePanel.setBackground(new Color(51,51,255));
     }//GEN-LAST:event_IncomePanelMousePressed
 
     private void IncomePanelMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_IncomePanelMouseReleased
-        // TODO add your handling code here:
+        IncomePanel.setBackground(new Color(0,0,91));
     }//GEN-LAST:event_IncomePanelMouseReleased
 
     private void ExpensePanelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExpensePanelMousePressed
-        // TODO add your handling code here:
+        ExpensePanel.setBackground(new Color(51,51,255));
     }//GEN-LAST:event_ExpensePanelMousePressed
 
     private void ExpensePanelMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExpensePanelMouseReleased
-        // TODO add your handling code here:
+        ExpensePanel.setBackground(new Color(0,0,91));
     }//GEN-LAST:event_ExpensePanelMouseReleased
 
     /**
