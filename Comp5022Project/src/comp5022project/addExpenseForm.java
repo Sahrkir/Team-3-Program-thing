@@ -37,6 +37,12 @@ public class addExpenseForm extends JFrame {
         AccountPanel = new javax.swing.JPanel();
         account_title = new javax.swing.JLabel();
         addExpense_title = new javax.swing.JLabel();
+        type = new javax.swing.JLabel();
+        when = new javax.swing.JLabel();
+        frequency = new javax.swing.JLabel();
+        amount = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(800, 800));
@@ -251,6 +257,29 @@ public class addExpenseForm extends JFrame {
         addExpense_title.setForeground(new java.awt.Color(255, 255, 255));
         addExpense_title.setText("Adding Expenses");
 
+        type.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        type.setForeground(new java.awt.Color(240, 240, 240));
+        type.setText("Type of payment:");
+
+        when.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        when.setForeground(new java.awt.Color(240, 240, 240));
+        when.setText("When is it due:");
+
+        frequency.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        frequency.setForeground(new java.awt.Color(240, 240, 240));
+        frequency.setText("How frequent:");
+
+        amount.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        amount.setForeground(new java.awt.Color(240, 240, 240));
+        amount.setText("Amount: £");
+
+        jTextField1.setBackground(new java.awt.Color(0, 0, 91));
+        jTextField1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jTextField1.setForeground(new java.awt.Color(240, 240, 240));
+
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton1.setText("ADD");
+
         javax.swing.GroupLayout ContentLayout = new javax.swing.GroupLayout(Content);
         Content.setLayout(ContentLayout);
         ContentLayout.setHorizontalGroup(
@@ -262,18 +291,37 @@ public class addExpenseForm extends JFrame {
                     .addComponent(IncomePanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(BalancePanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(AccountPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(165, 165, 165)
-                .addComponent(addExpense_title)
-                .addGap(0, 202, Short.MAX_VALUE))
+                .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ContentLayout.createSequentialGroup()
+                        .addGap(165, 165, 165)
+                        .addComponent(addExpense_title)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(ContentLayout.createSequentialGroup()
+                        .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(ContentLayout.createSequentialGroup()
+                                .addGap(227, 227, 227)
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(ContentLayout.createSequentialGroup()
+                                .addGap(38, 38, 38)
+                                .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(type, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(ContentLayout.createSequentialGroup()
+                                        .addGap(30, 30, 30)
+                                        .addComponent(when, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(ContentLayout.createSequentialGroup()
+                                        .addGap(40, 40, 40)
+                                        .addComponent(frequency, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(ContentLayout.createSequentialGroup()
+                                        .addGap(110, 110, 110)
+                                        .addComponent(amount, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addContainerGap(102, Short.MAX_VALUE))))
         );
         ContentLayout.setVerticalGroup(
             ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ContentLayout.createSequentialGroup()
-                .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(AccountPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(ContentLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(addExpense_title)))
+                .addComponent(AccountPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(BalancePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
@@ -281,7 +329,24 @@ public class addExpenseForm extends JFrame {
                 .addGap(0, 0, 0)
                 .addComponent(ExpensePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(newPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(newPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 140, Short.MAX_VALUE))
+            .addGroup(ContentLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(addExpense_title)
+                .addGap(48, 48, 48)
+                .addComponent(type)
+                .addGap(21, 21, 21)
+                .addComponent(when)
+                .addGap(21, 21, 21)
+                .addComponent(frequency)
+                .addGap(21, 21, 21)
+                .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(amount)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(71, 71, 71)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -442,9 +507,15 @@ public class addExpenseForm extends JFrame {
     private javax.swing.JLabel Title;
     private javax.swing.JLabel account_title;
     private javax.swing.JLabel addExpense_title;
+    private javax.swing.JLabel amount;
     private javax.swing.JLabel balance_title;
     private javax.swing.JLabel expense_title;
+    private javax.swing.JLabel frequency;
     private javax.swing.JLabel income_title;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JPanel newPanel;
+    private javax.swing.JLabel type;
+    private javax.swing.JLabel when;
     // End of variables declaration//GEN-END:variables
 }

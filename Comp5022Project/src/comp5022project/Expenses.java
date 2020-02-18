@@ -42,7 +42,7 @@ public class Expenses extends JFrame {
         currentExp = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         currentExpDetails = new javax.swing.JTextArea();
-        jButton1 = new javax.swing.JButton();
+        addExpenseButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(800, 800));
@@ -309,8 +309,13 @@ public class Expenses extends JFrame {
         currentExpDetails.setText("McDonalds £10.00 18/04/2018 12:45");
         jScrollPane1.setViewportView(currentExpDetails);
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton1.setText("Add a new expense");
+        addExpenseButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        addExpenseButton.setText("Add a new expense");
+        addExpenseButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                addExpenseButtonMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout ContentLayout = new javax.swing.GroupLayout(Content);
         Content.setLayout(ContentLayout);
@@ -334,7 +339,7 @@ public class Expenses extends JFrame {
                         .addContainerGap(48, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ContentLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(addExpenseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(199, 199, 199))))
         );
         ContentLayout.setVerticalGroup(
@@ -357,7 +362,7 @@ public class Expenses extends JFrame {
                         .addGap(16, 16, 16)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(31, 31, 31)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(addExpenseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(150, 150, 150))
         );
 
@@ -515,6 +520,15 @@ public class Expenses extends JFrame {
         trackPanel.setBackground(new Color(0,0,91));
     }//GEN-LAST:event_trackPanelMouseReleased
 
+    private void addExpenseButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addExpenseButtonMouseClicked
+        addExpenseForm aef = new addExpenseForm();
+        aef.setVisible(true);
+        aef.pack();
+        aef.setLocationRelativeTo(null);
+        aef.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.dispose();
+    }//GEN-LAST:event_addExpenseButtonMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -560,13 +574,13 @@ public class Expenses extends JFrame {
     private javax.swing.JLabel Incomes_title;
     private javax.swing.JLabel Title;
     private javax.swing.JLabel account_title;
+    private javax.swing.JButton addExpenseButton;
     private javax.swing.JLabel balance_title;
     private javax.swing.JLabel currentExp;
     private javax.swing.JTextArea currentExpDetails;
     private javax.swing.JLabel expense_title;
     private javax.swing.JLabel expense_title1;
     private javax.swing.JLabel income_title;
-    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel trackPanel;
     // End of variables declaration//GEN-END:variables

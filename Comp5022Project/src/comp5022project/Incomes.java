@@ -487,10 +487,12 @@ public class Incomes extends JFrame {
     }//GEN-LAST:event_AccountPanelMousePressed
 
     private void newIncButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newIncButtonMouseClicked
-        
-        
-        
-        
+        addIncomeForm aif = new addIncomeForm();
+        aif.setVisible(true);
+        aif.pack();
+        aif.setLocationRelativeTo(null);
+        aif.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.dispose();
     }//GEN-LAST:event_newIncButtonMouseClicked
 
     private void BalancePanelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BalancePanelMousePressed

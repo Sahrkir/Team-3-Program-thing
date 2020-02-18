@@ -24,10 +24,16 @@ public class addIncomeForm extends JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        Firstname2 = new javax.swing.JLabel();
         Banner = new javax.swing.JPanel();
         Title = new javax.swing.JLabel();
         Content = new javax.swing.JPanel();
         addIncome_title = new javax.swing.JLabel();
+        type = new javax.swing.JLabel();
+        when = new javax.swing.JLabel();
+        frequency = new javax.swing.JLabel();
+        amount = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         AccountPanel = new javax.swing.JPanel();
         account_title = new javax.swing.JLabel();
         IncomePanel = new javax.swing.JPanel();
@@ -37,6 +43,11 @@ public class addIncomeForm extends JFrame {
         ExpensePanel = new javax.swing.JPanel();
         expense_title = new javax.swing.JLabel();
         newPanel = new javax.swing.JPanel();
+        jTextField1 = new javax.swing.JTextField();
+
+        Firstname2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        Firstname2.setForeground(new java.awt.Color(240, 240, 240));
+        Firstname2.setText("When is it due:");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(800, 800));
@@ -81,6 +92,25 @@ public class addIncomeForm extends JFrame {
         addIncome_title.setFont(new java.awt.Font("Felix Titling", 1, 24)); // NOI18N
         addIncome_title.setForeground(new java.awt.Color(255, 255, 255));
         addIncome_title.setText("Adding Incomes");
+
+        type.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        type.setForeground(new java.awt.Color(240, 240, 240));
+        type.setText("Type of payment:");
+
+        when.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        when.setForeground(new java.awt.Color(240, 240, 240));
+        when.setText("When is it due:");
+
+        frequency.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        frequency.setForeground(new java.awt.Color(240, 240, 240));
+        frequency.setText("How frequent:");
+
+        amount.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        amount.setForeground(new java.awt.Color(240, 240, 240));
+        amount.setText("Amount: £");
+
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton1.setText("ADD");
 
         AccountPanel.setBackground(new java.awt.Color(0, 0, 95));
         AccountPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -251,6 +281,10 @@ public class addIncomeForm extends JFrame {
             .addGap(0, 100, Short.MAX_VALUE)
         );
 
+        jTextField1.setBackground(new java.awt.Color(0, 0, 91));
+        jTextField1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jTextField1.setForeground(new java.awt.Color(240, 240, 240));
+
         javax.swing.GroupLayout ContentLayout = new javax.swing.GroupLayout(Content);
         Content.setLayout(ContentLayout);
         ContentLayout.setHorizontalGroup(
@@ -258,29 +292,62 @@ public class addIncomeForm extends JFrame {
             .addGroup(ContentLayout.createSequentialGroup()
                 .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(newPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                    .addComponent(ExpensePanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(IncomePanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ExpensePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(BalancePanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(AccountPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(165, 165, 165)
-                .addComponent(addIncome_title)
-                .addGap(0, 204, Short.MAX_VALUE))
+                    .addComponent(AccountPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(IncomePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(37, 37, 37)
+                .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ContentLayout.createSequentialGroup()
+                        .addGap(125, 125, 125)
+                        .addComponent(addIncome_title))
+                    .addComponent(type, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(ContentLayout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(when, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(ContentLayout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(frequency, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(ContentLayout.createSequentialGroup()
+                        .addGap(110, 110, 110)
+                        .addComponent(amount, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(ContentLayout.createSequentialGroup()
+                        .addGap(188, 188, 188)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(103, Short.MAX_VALUE))
         );
         ContentLayout.setVerticalGroup(
             ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ContentLayout.createSequentialGroup()
                 .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(AccountPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(ContentLayout.createSequentialGroup()
+                        .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(ContentLayout.createSequentialGroup()
+                                .addComponent(AccountPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, 0)
+                                .addComponent(BalancePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, 0)
+                                .addComponent(IncomePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(ContentLayout.createSequentialGroup()
+                                .addGap(13, 13, 13)
+                                .addComponent(addIncome_title)
+                                .addGap(48, 48, 48)
+                                .addComponent(type)
+                                .addGap(21, 21, 21)
+                                .addComponent(when)
+                                .addGap(21, 21, 21)
+                                .addComponent(frequency)
+                                .addGap(21, 21, 21)
+                                .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(amount)
+                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(ExpensePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ContentLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(addIncome_title)))
-                .addGap(0, 0, 0)
-                .addComponent(BalancePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(IncomePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(ExpensePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(36, 36, 36)))
                 .addComponent(newPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -438,13 +505,20 @@ public class addIncomeForm extends JFrame {
     private javax.swing.JPanel Banner;
     private javax.swing.JPanel Content;
     private javax.swing.JPanel ExpensePanel;
+    private javax.swing.JLabel Firstname2;
     private javax.swing.JPanel IncomePanel;
     private javax.swing.JLabel Title;
     private javax.swing.JLabel account_title;
     private javax.swing.JLabel addIncome_title;
+    private javax.swing.JLabel amount;
     private javax.swing.JLabel balance_title;
     private javax.swing.JLabel expense_title;
+    private javax.swing.JLabel frequency;
     private javax.swing.JLabel income_title;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JPanel newPanel;
+    private javax.swing.JLabel type;
+    private javax.swing.JLabel when;
     // End of variables declaration//GEN-END:variables
 }
