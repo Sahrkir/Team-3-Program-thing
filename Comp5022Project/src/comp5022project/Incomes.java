@@ -210,7 +210,7 @@ public class Incomes extends JFrame {
         currentExpDetails.setColumns(20);
         currentExpDetails.setFont(new java.awt.Font("Monospaced", 1, 14)); // NOI18N
         currentExpDetails.setRows(5);
-        currentExpDetails.setText("McDonalds £10.00 18/04/2018 12:45\nWork McDonalds £53.55 13/02/2020 20:45\nLoan Student Finance £1000 27/01/2019 08:31");
+        currentExpDetails.setText("Job McDonalds £53.55 13/02/2020 20:45\nLoan Student Finance £1000 27/01/2019 08:31");
         displayIncDetails.setViewportView(currentExpDetails);
 
         newIncButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N

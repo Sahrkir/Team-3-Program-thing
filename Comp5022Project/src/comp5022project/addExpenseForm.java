@@ -35,8 +35,11 @@ public class addExpenseForm extends JFrame {
         expense_title = new javax.swing.JLabel();
         addExpense_title = new javax.swing.JLabel();
         type = new javax.swing.JLabel();
+        type_Pay = new javax.swing.JComboBox<>();
         when = new javax.swing.JLabel();
+        due_Date = new datechooser.beans.DateChooserCombo();
         frequency = new javax.swing.JLabel();
+        frequent_Pay = new javax.swing.JComboBox<>();
         amount = new javax.swing.JLabel();
         expenseValue = new javax.swing.JTextField();
         expAdded = new javax.swing.JButton();
@@ -194,106 +197,170 @@ public class addExpenseForm extends JFrame {
         type.setForeground(new java.awt.Color(240, 240, 240));
         type.setText("Type of payment:");
 
+        type_Pay.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        type_Pay.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Loan", "Subscription", "Meal", "Other" }));
+        type_Pay.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
         when.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         when.setForeground(new java.awt.Color(240, 240, 240));
         when.setText("When is it due:");
 
-        frequency.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        frequency.setForeground(new java.awt.Color(240, 240, 240));
-        frequency.setText("How frequent:");
+        due_Date.setCurrentView(new datechooser.view.appearance.AppearancesList("Swing",
+            new datechooser.view.appearance.ViewAppearance("custom",
+                new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Tahoma", java.awt.Font.PLAIN, 13),
+                    new java.awt.Color(0, 0, 0),
+                    new java.awt.Color(0, 0, 255),
+                    false,
+                    true,
+                    new datechooser.view.appearance.swing.ButtonPainter()),
+                new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Tahoma", java.awt.Font.PLAIN, 13),
+                    new java.awt.Color(0, 0, 0),
+                    new java.awt.Color(0, 0, 255),
+                    true,
+                    true,
+                    new datechooser.view.appearance.swing.ButtonPainter()),
+                new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Tahoma", java.awt.Font.PLAIN, 13),
+                    new java.awt.Color(0, 0, 255),
+                    new java.awt.Color(0, 0, 255),
+                    false,
+                    true,
+                    new datechooser.view.appearance.swing.ButtonPainter()),
+                new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Tahoma", java.awt.Font.PLAIN, 13),
+                    new java.awt.Color(128, 128, 128),
+                    new java.awt.Color(0, 0, 255),
+                    false,
+                    true,
+                    new datechooser.view.appearance.swing.LabelPainter()),
+                new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Tahoma", java.awt.Font.PLAIN, 13),
+                    new java.awt.Color(0, 0, 0),
+                    new java.awt.Color(0, 0, 255),
+                    false,
+                    true,
+                    new datechooser.view.appearance.swing.LabelPainter()),
+                new datechooser.view.appearance.swing.SwingCellAppearance(new java.awt.Font("Tahoma", java.awt.Font.PLAIN, 13),
+                    new java.awt.Color(0, 0, 0),
+                    new java.awt.Color(255, 0, 0),
+                    false,
+                    false,
+                    new datechooser.view.appearance.swing.ButtonPainter()),
+                (datechooser.view.BackRenderer)null,
+                false,
+                true)));
+    due_Date.setCalendarPreferredSize(new java.awt.Dimension(400, 250));
+    due_Date.setFieldFont(new java.awt.Font("Tahoma", java.awt.Font.BOLD, 14));
+    due_Date.setNavigateFont(new java.awt.Font("Tahoma", java.awt.Font.BOLD, 14));
 
-        amount.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        amount.setForeground(new java.awt.Color(240, 240, 240));
-        amount.setText("Amount: £");
+    frequency.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+    frequency.setForeground(new java.awt.Color(240, 240, 240));
+    frequency.setText("How frequent:");
 
-        expenseValue.setBackground(new java.awt.Color(0, 0, 91));
-        expenseValue.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        expenseValue.setForeground(new java.awt.Color(240, 240, 240));
+    frequent_Pay.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+    frequent_Pay.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Daily", "Weekly", "Monthly", "Yearly" }));
 
-        expAdded.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        expAdded.setText("ADD");
+    amount.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+    amount.setForeground(new java.awt.Color(240, 240, 240));
+    amount.setText("Amount: £");
 
-        javax.swing.GroupLayout ContentLayout = new javax.swing.GroupLayout(Content);
-        Content.setLayout(ContentLayout);
-        ContentLayout.setHorizontalGroup(
-            ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ContentLayout.createSequentialGroup()
-                .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(ExpensePanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(IncomePanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(BalancePanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(ContentLayout.createSequentialGroup()
-                        .addGap(123, 123, 123)
-                        .addComponent(addExpense_title)
-                        .addGap(0, 244, Short.MAX_VALUE))
-                    .addGroup(ContentLayout.createSequentialGroup()
-                        .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(ContentLayout.createSequentialGroup()
-                                .addGap(185, 185, 185)
-                                .addComponent(expAdded, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(ContentLayout.createSequentialGroup()
-                                .addGap(46, 46, 46)
-                                .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(type, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(ContentLayout.createSequentialGroup()
-                                        .addGap(30, 30, 30)
-                                        .addComponent(when, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(ContentLayout.createSequentialGroup()
-                                        .addGap(40, 40, 40)
-                                        .addComponent(frequency, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(ContentLayout.createSequentialGroup()
-                                        .addGap(110, 110, 110)
-                                        .addComponent(amount, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(expenseValue, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-        );
-        ContentLayout.setVerticalGroup(
-            ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ContentLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(addExpense_title)
-                .addGap(62, 62, 62)
-                .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(ContentLayout.createSequentialGroup()
-                        .addComponent(type)
-                        .addGap(21, 21, 21)
-                        .addComponent(when)
-                        .addGap(21, 21, 21)
-                        .addComponent(frequency)
-                        .addGap(21, 21, 21)
-                        .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(amount)
-                            .addComponent(expenseValue, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(57, 57, 57)
-                        .addComponent(expAdded, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(ContentLayout.createSequentialGroup()
-                        .addComponent(BalancePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(IncomePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(ExpensePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 244, Short.MAX_VALUE))))
-        );
+    expenseValue.setBackground(new java.awt.Color(0, 0, 91));
+    expenseValue.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+    expenseValue.setForeground(new java.awt.Color(240, 240, 240));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+    expAdded.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+    expAdded.setText("ADD");
+
+    javax.swing.GroupLayout ContentLayout = new javax.swing.GroupLayout(Content);
+    Content.setLayout(ContentLayout);
+    ContentLayout.setHorizontalGroup(
+        ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(ContentLayout.createSequentialGroup()
+            .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addComponent(ExpensePanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(IncomePanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(BalancePanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(ContentLayout.createSequentialGroup()
+                    .addGap(123, 123, 123)
+                    .addComponent(addExpense_title)
+                    .addGap(0, 244, Short.MAX_VALUE))
+                .addGroup(ContentLayout.createSequentialGroup()
+                    .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(ContentLayout.createSequentialGroup()
+                            .addGap(233, 233, 233)
+                            .addComponent(expAdded, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(ContentLayout.createSequentialGroup()
+                            .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(ContentLayout.createSequentialGroup()
+                                            .addGap(83, 83, 83)
+                                            .addComponent(when, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(ContentLayout.createSequentialGroup()
+                                            .addGap(93, 93, 93)
+                                            .addComponent(frequency, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(amount, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(ContentLayout.createSequentialGroup()
+                                    .addGap(53, 53, 53)
+                                    .addComponent(type)))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(expenseValue, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
+                                .addComponent(type_Pay, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(due_Date, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(frequent_Pay, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+    );
+    ContentLayout.setVerticalGroup(
+        ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(ContentLayout.createSequentialGroup()
+            .addContainerGap()
+            .addComponent(addExpense_title)
+            .addGap(62, 62, 62)
+            .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(ContentLayout.createSequentialGroup()
+                    .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(ContentLayout.createSequentialGroup()
+                            .addComponent(type)
+                            .addGap(25, 25, 25)
+                            .addComponent(when)
+                            .addGap(21, 21, 21)
+                            .addComponent(frequency))
+                        .addGroup(ContentLayout.createSequentialGroup()
+                            .addComponent(type_Pay, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(21, 21, 21)
+                            .addComponent(due_Date, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGap(20, 20, 20)
+                            .addComponent(frequent_Pay, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGap(20, 20, 20)
+                    .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(amount)
+                        .addComponent(expenseValue, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(93, 93, 93)
+                    .addComponent(expAdded, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(ContentLayout.createSequentialGroup()
+                    .addComponent(BalancePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, 0)
+                    .addComponent(IncomePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, 0)
+                    .addComponent(ExpensePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGap(0, 240, Short.MAX_VALUE))
+    );
+
+    javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+    getContentPane().setLayout(layout);
+    layout.setHorizontalGroup(
+        layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addComponent(Banner, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        .addComponent(Content, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+    );
+    layout.setVerticalGroup(
+        layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(layout.createSequentialGroup()
             .addComponent(Banner, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(Content, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(Banner, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(0, 0, 0)
-                .addComponent(Content, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+            .addGap(0, 0, 0)
+            .addComponent(Content, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+    );
 
-        pack();
+    pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void BannerMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BannerMouseDragged
@@ -403,12 +470,15 @@ public class addExpenseForm extends JFrame {
     private javax.swing.JLabel addExpense_title;
     private javax.swing.JLabel amount;
     private javax.swing.JLabel balance_title;
+    private datechooser.beans.DateChooserCombo due_Date;
     private javax.swing.JButton expAdded;
     private javax.swing.JTextField expenseValue;
     private javax.swing.JLabel expense_title;
     private javax.swing.JLabel frequency;
+    private javax.swing.JComboBox<String> frequent_Pay;
     private javax.swing.JLabel income_title;
     private javax.swing.JLabel type;
+    private javax.swing.JComboBox<String> type_Pay;
     private javax.swing.JLabel when;
     // End of variables declaration//GEN-END:variables
 }
