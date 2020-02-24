@@ -35,7 +35,6 @@ public class addExpenseForm extends JFrame {
         expense_title = new javax.swing.JLabel();
         addExpense_title = new javax.swing.JLabel();
         type = new javax.swing.JLabel();
-        type_Pay = new javax.swing.JComboBox<>();
         when = new javax.swing.JLabel();
         due_Date = new datechooser.beans.DateChooserCombo();
         frequency = new javax.swing.JLabel();
@@ -43,6 +42,7 @@ public class addExpenseForm extends JFrame {
         amount = new javax.swing.JLabel();
         expenseValue = new javax.swing.JTextField();
         expAdded = new javax.swing.JButton();
+        expenseValue1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(800, 800));
@@ -197,10 +197,6 @@ public class addExpenseForm extends JFrame {
         type.setForeground(new java.awt.Color(240, 240, 240));
         type.setText("Type of payment:");
 
-        type_Pay.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        type_Pay.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Loan", "Subscription", "Meal", "Other" }));
-        type_Pay.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
         when.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         when.setForeground(new java.awt.Color(240, 240, 240));
         when.setText("When is it due:");
@@ -255,7 +251,7 @@ public class addExpenseForm extends JFrame {
     frequency.setText("How frequent:");
 
     frequent_Pay.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-    frequent_Pay.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Daily", "Weekly", "Monthly", "Yearly" }));
+    frequent_Pay.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Single", "Daily", "Weekly", "Monthly", "Yearly" }));
 
     amount.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
     amount.setForeground(new java.awt.Color(240, 240, 240));
@@ -267,6 +263,10 @@ public class addExpenseForm extends JFrame {
 
     expAdded.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
     expAdded.setText("ADD");
+
+    expenseValue1.setBackground(new java.awt.Color(0, 0, 91));
+    expenseValue1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+    expenseValue1.setForeground(new java.awt.Color(240, 240, 240));
 
     javax.swing.GroupLayout ContentLayout = new javax.swing.GroupLayout(Content);
     Content.setLayout(ContentLayout);
@@ -304,9 +304,9 @@ public class addExpenseForm extends JFrame {
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(expenseValue, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
-                                .addComponent(type_Pay, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(due_Date, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(frequent_Pay, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addComponent(frequent_Pay, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(expenseValue1, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE))))
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
     );
     ContentLayout.setVerticalGroup(
@@ -325,15 +325,16 @@ public class addExpenseForm extends JFrame {
                             .addGap(21, 21, 21)
                             .addComponent(frequency))
                         .addGroup(ContentLayout.createSequentialGroup()
-                            .addComponent(type_Pay, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(21, 21, 21)
+                            .addGap(2, 2, 2)
+                            .addComponent(expenseValue, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
                             .addComponent(due_Date, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGap(20, 20, 20)
                             .addComponent(frequent_Pay, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGap(20, 20, 20)
                     .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(amount)
-                        .addComponent(expenseValue, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(expenseValue1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGap(93, 93, 93)
                     .addComponent(expAdded, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(ContentLayout.createSequentialGroup()
@@ -473,12 +474,12 @@ public class addExpenseForm extends JFrame {
     private datechooser.beans.DateChooserCombo due_Date;
     private javax.swing.JButton expAdded;
     private javax.swing.JTextField expenseValue;
+    private javax.swing.JTextField expenseValue1;
     private javax.swing.JLabel expense_title;
     private javax.swing.JLabel frequency;
     private javax.swing.JComboBox<String> frequent_Pay;
     private javax.swing.JLabel income_title;
     private javax.swing.JLabel type;
-    private javax.swing.JComboBox<String> type_Pay;
     private javax.swing.JLabel when;
     // End of variables declaration//GEN-END:variables
 }

@@ -36,7 +36,6 @@ public class addIncomeForm extends JFrame {
         expense_title = new javax.swing.JLabel();
         addIncome_title = new javax.swing.JLabel();
         type = new javax.swing.JLabel();
-        type_Pay = new javax.swing.JComboBox<>();
         when = new javax.swing.JLabel();
         due_Date = new datechooser.beans.DateChooserCombo();
         frequency = new javax.swing.JLabel();
@@ -44,6 +43,7 @@ public class addIncomeForm extends JFrame {
         amount = new javax.swing.JLabel();
         incomeValue = new javax.swing.JTextField();
         incAdded = new javax.swing.JButton();
+        incomeValue1 = new javax.swing.JTextField();
 
         Firstname2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         Firstname2.setForeground(new java.awt.Color(240, 240, 240));
@@ -202,10 +202,6 @@ public class addIncomeForm extends JFrame {
         type.setForeground(new java.awt.Color(240, 240, 240));
         type.setText("Type of payment:");
 
-        type_Pay.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        type_Pay.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Loan", "Job", "One off payment", "Other" }));
-        type_Pay.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
         when.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         when.setForeground(new java.awt.Color(240, 240, 240));
         when.setText("When is it due:");
@@ -259,7 +255,7 @@ public class addIncomeForm extends JFrame {
     frequency.setText("How frequent:");
 
     frequent_Pay.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-    frequent_Pay.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Daily", "Weekly", "Monthly", "Yearly" }));
+    frequent_Pay.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Single", "Daily", "Bi-Weekly", "Weekly", "Monthly", "Yearly" }));
 
     amount.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
     amount.setForeground(new java.awt.Color(240, 240, 240));
@@ -271,6 +267,10 @@ public class addIncomeForm extends JFrame {
 
     incAdded.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
     incAdded.setText("ADD");
+
+    incomeValue1.setBackground(new java.awt.Color(0, 0, 91));
+    incomeValue1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+    incomeValue1.setForeground(new java.awt.Color(240, 240, 240));
 
     javax.swing.GroupLayout ContentLayout = new javax.swing.GroupLayout(Content);
     Content.setLayout(ContentLayout);
@@ -301,11 +301,12 @@ public class addIncomeForm extends JFrame {
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(amount, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(type_Pay, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(due_Date, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(frequent_Pay, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(incomeValue, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(due_Date, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(frequent_Pay, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(incomeValue, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(incomeValue1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(ContentLayout.createSequentialGroup()
                     .addGap(233, 233, 233)
                     .addComponent(incAdded, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -316,16 +317,17 @@ public class addIncomeForm extends JFrame {
         .addGroup(ContentLayout.createSequentialGroup()
             .addGap(13, 13, 13)
             .addComponent(addIncome_title)
-            .addGap(62, 62, 62)
             .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(ContentLayout.createSequentialGroup()
+                    .addGap(62, 62, 62)
                     .addComponent(BalancePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, 0)
                     .addComponent(IncomePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(ContentLayout.createSequentialGroup()
-                    .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGap(61, 61, 61)
+                    .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(type)
-                        .addComponent(type_Pay, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(incomeValue1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGap(21, 21, 21)
                     .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(when, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -476,9 +478,9 @@ public class addIncomeForm extends JFrame {
     private javax.swing.JComboBox<String> frequent_Pay;
     private javax.swing.JButton incAdded;
     private javax.swing.JTextField incomeValue;
+    private javax.swing.JTextField incomeValue1;
     private javax.swing.JLabel income_title;
     private javax.swing.JLabel type;
-    private javax.swing.JComboBox<String> type_Pay;
     private javax.swing.JLabel when;
     // End of variables declaration//GEN-END:variables
 }
