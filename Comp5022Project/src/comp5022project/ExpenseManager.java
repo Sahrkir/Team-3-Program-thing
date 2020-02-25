@@ -1,6 +1,8 @@
 package comp5022project;
 import javax.swing.*;
 import java.awt.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author William Cuthbert
@@ -10,7 +12,7 @@ public class ExpenseManager extends JFrame {
     User user;
     int mouseX, mouseY, coordinateX, coordinateY;
     
-    public ExpenseManager() {
+    public ExpenseManager() throws Exception {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(true);
@@ -248,12 +250,16 @@ public class ExpenseManager extends JFrame {
     }//GEN-LAST:event_BalancePanelMouseEntered
 
     private void BalancePanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BalancePanelMouseClicked
-        Balance b = new Balance();
-        b.setVisible(true);
-        b.pack();
-        b.setLocationRelativeTo(null);
-        b.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.dispose();
+        try {
+            Balance b = new Balance();
+            b.setVisible(true);
+            b.pack();
+            b.setLocationRelativeTo(null);
+            b.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            this.dispose();
+        } catch (Exception ex) {
+            Logger.getLogger(ExpenseManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_BalancePanelMouseClicked
 
     private void IncomePanelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_IncomePanelMouseExited
@@ -265,12 +271,16 @@ public class ExpenseManager extends JFrame {
     }//GEN-LAST:event_IncomePanelMouseEntered
 
     private void IncomePanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_IncomePanelMouseClicked
-        Incomes in = new Incomes();
-        in.setVisible(true);
-        in.pack();
-        in.setLocationRelativeTo(null);
-        in.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.dispose();
+        try {
+            Incomes in = new Incomes();
+            in.setVisible(true);
+            in.pack();
+            in.setLocationRelativeTo(null);
+            in.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            this.dispose();
+        } catch (Exception ex) {
+            Logger.getLogger(ExpenseManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_IncomePanelMouseClicked
 
     private void ExpensePanelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExpensePanelMouseExited
@@ -282,12 +292,16 @@ public class ExpenseManager extends JFrame {
     }//GEN-LAST:event_ExpensePanelMouseEntered
 
     private void ExpensePanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExpensePanelMouseClicked
-        Expenses e = new Expenses();
-        e.setVisible(true);
-        e.pack();
-        e.setLocationRelativeTo(null);
-        e.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.dispose();
+        try {
+            Expenses e = new Expenses();
+            e.setVisible(true);
+            e.pack();
+            e.setLocationRelativeTo(null);
+            e.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            this.dispose();
+        } catch (Exception ex) {
+            Logger.getLogger(ExpenseManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_ExpensePanelMouseClicked
 
     private void BannerMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BannerMousePressed
@@ -355,7 +369,11 @@ public class ExpenseManager extends JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ExpenseManager().setVisible(true);
+                try {
+                    new ExpenseManager().setVisible(true);
+                } catch (Exception ex) {
+                    Logger.getLogger(ExpenseManager.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

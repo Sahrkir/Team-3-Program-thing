@@ -1,6 +1,8 @@
 package comp5022project;
 import javax.swing.*;
 import java.awt.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author William Cuthbert
@@ -9,10 +11,12 @@ public class addIncomeForm extends JFrame {
 
     User user;
     int coordinateX,coordinateY,mouseX,mouseY;
+    String type,date,freq,incomeAmount;
     
-    public addIncomeForm() {
+    public addIncomeForm() throws Exception {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.setResizable(true);
     }
 
     /**
@@ -35,15 +39,15 @@ public class addIncomeForm extends JFrame {
         ExpensePanel = new javax.swing.JPanel();
         expense_title = new javax.swing.JLabel();
         addIncome_title = new javax.swing.JLabel();
-        type = new javax.swing.JLabel();
+        type_Of_Payment = new javax.swing.JLabel();
         when = new javax.swing.JLabel();
         due_Date = new datechooser.beans.DateChooserCombo();
         frequency = new javax.swing.JLabel();
         frequent_Pay = new javax.swing.JComboBox<>();
         amount = new javax.swing.JLabel();
-        incomeValue = new javax.swing.JTextField();
+        input_Value = new javax.swing.JTextField();
         incAdded = new javax.swing.JButton();
-        incomeValue1 = new javax.swing.JTextField();
+        input_Type = new javax.swing.JTextField();
 
         Firstname2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         Firstname2.setForeground(new java.awt.Color(240, 240, 240));
@@ -198,9 +202,9 @@ public class addIncomeForm extends JFrame {
         addIncome_title.setForeground(new java.awt.Color(255, 255, 255));
         addIncome_title.setText("Adding Incomes");
 
-        type.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        type.setForeground(new java.awt.Color(240, 240, 240));
-        type.setText("Type of payment:");
+        type_Of_Payment.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        type_Of_Payment.setForeground(new java.awt.Color(240, 240, 240));
+        type_Of_Payment.setText("Type of payment:");
 
         when.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         when.setForeground(new java.awt.Color(240, 240, 240));
@@ -261,16 +265,21 @@ public class addIncomeForm extends JFrame {
     amount.setForeground(new java.awt.Color(240, 240, 240));
     amount.setText("Amount: £");
 
-    incomeValue.setBackground(new java.awt.Color(0, 0, 91));
-    incomeValue.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-    incomeValue.setForeground(new java.awt.Color(240, 240, 240));
+    input_Value.setBackground(new java.awt.Color(0, 0, 91));
+    input_Value.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+    input_Value.setForeground(new java.awt.Color(240, 240, 240));
 
     incAdded.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
     incAdded.setText("ADD");
+    incAdded.addMouseListener(new java.awt.event.MouseAdapter() {
+        public void mouseClicked(java.awt.event.MouseEvent evt) {
+            incAddedMouseClicked(evt);
+        }
+    });
 
-    incomeValue1.setBackground(new java.awt.Color(0, 0, 91));
-    incomeValue1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-    incomeValue1.setForeground(new java.awt.Color(240, 240, 240));
+    input_Type.setBackground(new java.awt.Color(0, 0, 91));
+    input_Type.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+    input_Type.setForeground(new java.awt.Color(240, 240, 240));
 
     javax.swing.GroupLayout ContentLayout = new javax.swing.GroupLayout(Content);
     Content.setLayout(ContentLayout);
@@ -296,7 +305,7 @@ public class addIncomeForm extends JFrame {
                                 .addGroup(ContentLayout.createSequentialGroup()
                                     .addGap(40, 40, 40)
                                     .addComponent(frequency, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(type, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(type_Of_Payment, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ContentLayout.createSequentialGroup()
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(amount, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -305,8 +314,8 @@ public class addIncomeForm extends JFrame {
                         .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(due_Date, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(frequent_Pay, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(incomeValue, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(incomeValue1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(input_Value, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(input_Type, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(ContentLayout.createSequentialGroup()
                     .addGap(233, 233, 233)
                     .addComponent(incAdded, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -326,8 +335,8 @@ public class addIncomeForm extends JFrame {
                 .addGroup(ContentLayout.createSequentialGroup()
                     .addGap(61, 61, 61)
                     .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(type)
-                        .addComponent(incomeValue1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(type_Of_Payment)
+                        .addComponent(input_Type, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGap(21, 21, 21)
                     .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(when, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -339,7 +348,7 @@ public class addIncomeForm extends JFrame {
                     .addGap(21, 21, 21)
                     .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(amount)
-                        .addComponent(incomeValue, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(input_Value, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
             .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                 .addComponent(ExpensePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(incAdded, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -376,12 +385,16 @@ public class addIncomeForm extends JFrame {
     }//GEN-LAST:event_BannerMousePressed
 
     private void ExpensePanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExpensePanelMouseClicked
-        Expenses e = new Expenses();
-        e.setVisible(true);
-        e.pack();
-        e.setLocationRelativeTo(null);
-        e.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.dispose();
+        try {
+            Expenses e = new Expenses();
+            e.setVisible(true);
+            e.pack();
+            e.setLocationRelativeTo(null);
+            e.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            this.dispose();
+        } catch (Exception ex) {
+            Logger.getLogger(addIncomeForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_ExpensePanelMouseClicked
 
     private void ExpensePanelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExpensePanelMouseEntered
@@ -393,12 +406,16 @@ public class addIncomeForm extends JFrame {
     }//GEN-LAST:event_ExpensePanelMouseExited
 
     private void IncomePanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_IncomePanelMouseClicked
-        Incomes in = new Incomes();
-        in.setVisible(true);
-        in.pack();
-        in.setLocationRelativeTo(null);
-        in.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.dispose();
+        try {
+            Incomes in = new Incomes();
+            in.setVisible(true);
+            in.pack();
+            in.setLocationRelativeTo(null);
+            in.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            this.dispose();
+        } catch (Exception ex) {
+            Logger.getLogger(addIncomeForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_IncomePanelMouseClicked
 
     private void IncomePanelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_IncomePanelMouseEntered
@@ -410,12 +427,16 @@ public class addIncomeForm extends JFrame {
     }//GEN-LAST:event_IncomePanelMouseExited
 
     private void BalancePanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BalancePanelMouseClicked
-        Balance b = new Balance();
-        b.setVisible(true);
-        b.pack();
-        b.setLocationRelativeTo(null);
-        b.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.dispose();
+        try {
+            Balance b = new Balance();
+            b.setVisible(true);
+            b.pack();
+            b.setLocationRelativeTo(null);
+            b.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            this.dispose();
+        } catch (Exception ex) {
+            Logger.getLogger(addIncomeForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_BalancePanelMouseClicked
 
     private void BalancePanelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BalancePanelMouseEntered
@@ -426,10 +447,25 @@ public class addIncomeForm extends JFrame {
         BalancePanel.setBackground(new Color(0,0,95));
     }//GEN-LAST:event_BalancePanelMouseExited
 
+    private void incAddedMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_incAddedMouseClicked
+        type = input_Type.getText();
+        date = due_Date.getText();
+        freq = (String) frequent_Pay.getSelectedItem().toString();
+        incomeAmount = input_Value.getText();
+        
+        /*
+        These above are the values stored from the inputs by the user.
+        
+        save these into a file.
+        
+        we need to figure out a file structure.
+         */
+    }//GEN-LAST:event_incAddedMouseClicked
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[]) throws Exception {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -456,7 +492,11 @@ public class addIncomeForm extends JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new addIncomeForm().setVisible(true);
+                try {
+                    new addIncomeForm().setVisible(true);
+                } catch (Exception ex) {
+                    Logger.getLogger(addIncomeForm.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -477,10 +517,10 @@ public class addIncomeForm extends JFrame {
     private javax.swing.JLabel frequency;
     private javax.swing.JComboBox<String> frequent_Pay;
     private javax.swing.JButton incAdded;
-    private javax.swing.JTextField incomeValue;
-    private javax.swing.JTextField incomeValue1;
     private javax.swing.JLabel income_title;
-    private javax.swing.JLabel type;
+    private javax.swing.JTextField input_Type;
+    private javax.swing.JTextField input_Value;
+    private javax.swing.JLabel type_Of_Payment;
     private javax.swing.JLabel when;
     // End of variables declaration//GEN-END:variables
 }

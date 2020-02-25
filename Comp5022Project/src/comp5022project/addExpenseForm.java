@@ -1,6 +1,8 @@
 package comp5022project;
 import javax.swing.*;
 import java.awt.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author William Cuthbert
@@ -9,10 +11,12 @@ public class addExpenseForm extends JFrame {
 
     User user;
     int coordinateX,coordinateY,mouseX,mouseY;
+    String type,date,freq,incomeAmount;
     
-    public addExpenseForm() {
+    public addExpenseForm() throws Exception {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.setResizable(true);
     }
 
     /**
@@ -34,15 +38,15 @@ public class addExpenseForm extends JFrame {
         ExpensePanel = new javax.swing.JPanel();
         expense_title = new javax.swing.JLabel();
         addExpense_title = new javax.swing.JLabel();
-        type = new javax.swing.JLabel();
+        type_Of_Pay = new javax.swing.JLabel();
         when = new javax.swing.JLabel();
         due_Date = new datechooser.beans.DateChooserCombo();
         frequency = new javax.swing.JLabel();
         frequent_Pay = new javax.swing.JComboBox<>();
         amount = new javax.swing.JLabel();
-        expenseValue = new javax.swing.JTextField();
+        input_Type = new javax.swing.JTextField();
         expAdded = new javax.swing.JButton();
-        expenseValue1 = new javax.swing.JTextField();
+        input_Value = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(800, 800));
@@ -193,9 +197,9 @@ public class addExpenseForm extends JFrame {
         addExpense_title.setForeground(new java.awt.Color(255, 255, 255));
         addExpense_title.setText("Adding Expenses");
 
-        type.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        type.setForeground(new java.awt.Color(240, 240, 240));
-        type.setText("Type of payment:");
+        type_Of_Pay.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        type_Of_Pay.setForeground(new java.awt.Color(240, 240, 240));
+        type_Of_Pay.setText("Type of payment:");
 
         when.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         when.setForeground(new java.awt.Color(240, 240, 240));
@@ -257,16 +261,21 @@ public class addExpenseForm extends JFrame {
     amount.setForeground(new java.awt.Color(240, 240, 240));
     amount.setText("Amount: £");
 
-    expenseValue.setBackground(new java.awt.Color(0, 0, 91));
-    expenseValue.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-    expenseValue.setForeground(new java.awt.Color(240, 240, 240));
+    input_Type.setBackground(new java.awt.Color(0, 0, 91));
+    input_Type.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+    input_Type.setForeground(new java.awt.Color(240, 240, 240));
 
     expAdded.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
     expAdded.setText("ADD");
+    expAdded.addMouseListener(new java.awt.event.MouseAdapter() {
+        public void mouseClicked(java.awt.event.MouseEvent evt) {
+            expAddedMouseClicked(evt);
+        }
+    });
 
-    expenseValue1.setBackground(new java.awt.Color(0, 0, 91));
-    expenseValue1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-    expenseValue1.setForeground(new java.awt.Color(240, 240, 240));
+    input_Value.setBackground(new java.awt.Color(0, 0, 91));
+    input_Value.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+    input_Value.setForeground(new java.awt.Color(240, 240, 240));
 
     javax.swing.GroupLayout ContentLayout = new javax.swing.GroupLayout(Content);
     Content.setLayout(ContentLayout);
@@ -300,13 +309,13 @@ public class addExpenseForm extends JFrame {
                                     .addComponent(amount, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(ContentLayout.createSequentialGroup()
                                     .addGap(53, 53, 53)
-                                    .addComponent(type)))
+                                    .addComponent(type_Of_Pay)))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(expenseValue, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
+                                .addComponent(input_Type, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
                                 .addComponent(due_Date, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(frequent_Pay, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(expenseValue1, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE))))
+                                .addComponent(input_Value, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE))))
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
     );
     ContentLayout.setVerticalGroup(
@@ -319,14 +328,14 @@ public class addExpenseForm extends JFrame {
                 .addGroup(ContentLayout.createSequentialGroup()
                     .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(ContentLayout.createSequentialGroup()
-                            .addComponent(type)
+                            .addComponent(type_Of_Pay)
                             .addGap(25, 25, 25)
                             .addComponent(when)
                             .addGap(21, 21, 21)
                             .addComponent(frequency))
                         .addGroup(ContentLayout.createSequentialGroup()
                             .addGap(2, 2, 2)
-                            .addComponent(expenseValue, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(input_Type, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
                             .addComponent(due_Date, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGap(20, 20, 20)
@@ -334,7 +343,7 @@ public class addExpenseForm extends JFrame {
                     .addGap(20, 20, 20)
                     .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(amount)
-                        .addComponent(expenseValue1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(input_Value, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGap(93, 93, 93)
                     .addComponent(expAdded, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(ContentLayout.createSequentialGroup()
@@ -376,12 +385,16 @@ public class addExpenseForm extends JFrame {
     }//GEN-LAST:event_BannerMousePressed
 
     private void ExpensePanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExpensePanelMouseClicked
-        Expenses e = new Expenses();
-        e.setVisible(true);
-        e.pack();
-        e.setLocationRelativeTo(null);
-        e.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.dispose();
+        try {
+            Expenses e = new Expenses();
+            e.setVisible(true);
+            e.pack();
+            e.setLocationRelativeTo(null);
+            e.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            this.dispose();
+        } catch (Exception ex) {
+            Logger.getLogger(addExpenseForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_ExpensePanelMouseClicked
 
     private void ExpensePanelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExpensePanelMouseEntered
@@ -393,12 +406,16 @@ public class addExpenseForm extends JFrame {
     }//GEN-LAST:event_ExpensePanelMouseExited
 
     private void IncomePanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_IncomePanelMouseClicked
-        Incomes in = new Incomes();
-        in.setVisible(true);
-        in.pack();
-        in.setLocationRelativeTo(null);
-        in.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.dispose();
+        try {
+            Incomes in = new Incomes();
+            in.setVisible(true);
+            in.pack();
+            in.setLocationRelativeTo(null);
+            in.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            this.dispose();
+        } catch (Exception ex) {
+            Logger.getLogger(addExpenseForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_IncomePanelMouseClicked
 
     private void IncomePanelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_IncomePanelMouseEntered
@@ -410,12 +427,16 @@ public class addExpenseForm extends JFrame {
     }//GEN-LAST:event_IncomePanelMouseExited
 
     private void BalancePanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BalancePanelMouseClicked
-        Balance b = new Balance();
-        b.setVisible(true);
-        b.pack();
-        b.setLocationRelativeTo(null);
-        b.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.dispose();
+        try {
+            Balance b = new Balance();
+            b.setVisible(true);
+            b.pack();
+            b.setLocationRelativeTo(null);
+            b.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            this.dispose();
+        } catch (Exception ex) {
+            Logger.getLogger(addExpenseForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_BalancePanelMouseClicked
 
     private void BalancePanelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BalancePanelMouseEntered
@@ -425,6 +446,23 @@ public class addExpenseForm extends JFrame {
     private void BalancePanelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BalancePanelMouseExited
         BalancePanel.setBackground(new Color(0,0,95));
     }//GEN-LAST:event_BalancePanelMouseExited
+
+    private void expAddedMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_expAddedMouseClicked
+        type = input_Type.getText();
+        date = due_Date.getText();
+        freq = (String) frequent_Pay.getSelectedItem().toString();
+        incomeAmount = input_Value.getText();
+        
+        /*
+        these above are the input values stored from the interface.
+        
+        we need these to update the balance.
+        
+        we need to maybe create a separate file to read and write the expenses?
+        
+        discuss about the file structure.
+        */
+    }//GEN-LAST:event_expAddedMouseClicked
 
     /**
      * @param args the command line arguments
@@ -456,7 +494,11 @@ public class addExpenseForm extends JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new addExpenseForm().setVisible(true);
+                try {
+                    new addExpenseForm().setVisible(true);
+                } catch (Exception ex) {
+                    Logger.getLogger(addExpenseForm.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -473,13 +515,13 @@ public class addExpenseForm extends JFrame {
     private javax.swing.JLabel balance_title;
     private datechooser.beans.DateChooserCombo due_Date;
     private javax.swing.JButton expAdded;
-    private javax.swing.JTextField expenseValue;
-    private javax.swing.JTextField expenseValue1;
     private javax.swing.JLabel expense_title;
     private javax.swing.JLabel frequency;
     private javax.swing.JComboBox<String> frequent_Pay;
     private javax.swing.JLabel income_title;
-    private javax.swing.JLabel type;
+    private javax.swing.JTextField input_Type;
+    private javax.swing.JTextField input_Value;
+    private javax.swing.JLabel type_Of_Pay;
     private javax.swing.JLabel when;
     // End of variables declaration//GEN-END:variables
 }
