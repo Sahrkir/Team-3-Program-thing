@@ -6,6 +6,7 @@
 package comp5022project;
 import java.io.IOException;
 import java.util.*;
+import javax.swing.JFrame;
 
 /**
  *
@@ -16,7 +17,13 @@ public class Comp5022Project {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws IOException{
+    
+    /**
+     * @param none
+     * @return none
+     * used to check the files are manipulated and saved the balanced from sprint 1/2
+     */
+    void userMenu() throws IOException {
         boolean menuActive = true;
         Date date = new Date();
         Scanner in = new Scanner(System.in);  
@@ -54,6 +61,13 @@ public class Comp5022Project {
                 default:
                     break;
             }
-        } 
+        }
+    }
+    public static void main(String[] args) throws Exception {
+        ExpenseManager EM = new ExpenseManager();
+        EM.setVisible(true);
+        EM.pack();
+        EM.setLocationRelativeTo(null);
+        EM.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }    
 }

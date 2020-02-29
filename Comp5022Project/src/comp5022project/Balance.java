@@ -1,6 +1,7 @@
 package comp5022project;
 import javax.swing.*;
 import java.awt.*;
+import java.nio.file.Files;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 /**
@@ -16,7 +17,7 @@ public class Balance extends JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(true);
-        balance_Value.setText((String.valueOf(user.getBalance())));
+        balance_Value.setText((String.valueOf(readBalance())));
     }
 
     /**
@@ -377,6 +378,17 @@ public class Balance extends JFrame {
         ExpensePanel.setBackground(new Color(0,0,91));
     }//GEN-LAST:event_ExpensePanelMouseReleased
 
+    double readBalance() {
+        /*
+        if file exists, read the value from the file.
+        
+        Return the value to be read into the interface
+        inside the constructor.
+        
+        */
+        return 0.0;
+    }
+    
     /**
      * @param args the command line arguments
      */

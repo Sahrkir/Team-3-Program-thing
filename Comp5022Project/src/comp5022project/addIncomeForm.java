@@ -253,13 +253,14 @@ public class addIncomeForm extends JFrame {
                 true)));
     due_Date.setCalendarPreferredSize(new java.awt.Dimension(400, 250));
     due_Date.setFieldFont(new java.awt.Font("Tahoma", java.awt.Font.BOLD, 14));
+    due_Date.setNavigateFont(new java.awt.Font("Tahoma", java.awt.Font.BOLD, 14));
 
     frequency.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
     frequency.setForeground(new java.awt.Color(240, 240, 240));
     frequency.setText("How frequent:");
 
     frequent_Pay.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-    frequent_Pay.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Single", "Daily", "Bi-Weekly", "Weekly", "Monthly", "Yearly" }));
+    frequent_Pay.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Single", "Daily", "By-weekly", "Monthly", "Yearly" }));
 
     amount.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
     amount.setForeground(new java.awt.Color(240, 240, 240));
