@@ -16,7 +16,6 @@ public class Balance extends JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(true);
-        balance_Value.setText((String.valueOf(user.getBalance())));
     }
 
     /**

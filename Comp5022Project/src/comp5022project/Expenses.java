@@ -1,8 +1,13 @@
 package comp5022project;
 import javax.swing.*;
 import java.awt.*;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author William Cuthbert
@@ -10,12 +15,14 @@ import java.util.logging.Logger;
 public class Expenses extends JFrame {
     
     User user;
+    String filePath = "Expense Details.csv";
     int coordinateX,coordinateY,mouseX,mouseY;
     
     public Expenses() throws Exception {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(true);
+        showRecords();
     }
 
     /**
@@ -393,9 +400,25 @@ public class Expenses extends JFrame {
             Logger.getLogger(Expenses.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_addExpenseButtonMouseClicked
-
-    void showRecords() {
-        
+      
+    public void showRecords() throws FileNotFoundException, IOException {
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(filePath));
+            String firstLine = br.readLine().trim();
+            String[] columnsName = firstLine.split(",");
+            DefaultTableModel model = (DefaultTableModel) table_of_expenses.getModel();
+            model.setColumnIdentifiers(columnsName);
+            
+            Object[] tableLines = br.lines().toArray();
+            
+            for(int i = 0; i < tableLines.length; i++) {
+                String line = tableLines[i].toString().trim();
+                String[] dataRow = line.split(",");
+                model.addRow(dataRow);
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null,"Records failed to show");
+        }
     }
     /**
      * @param args the command line arguments

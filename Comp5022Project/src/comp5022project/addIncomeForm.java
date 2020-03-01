@@ -14,6 +14,7 @@ import java.util.logging.Logger;
 public class addIncomeForm extends JFrame {
 
     User user;
+    Balance a;
     int coordinateX,coordinateY,mouseX,mouseY;
     String type,date,freq,incomeAmount;
     
@@ -458,7 +459,7 @@ public class addIncomeForm extends JFrame {
         freq = (String) frequent_Pay.getSelectedItem().toString();
         incomeAmount = input_Value.getText();
         
-        saveRecord(type,date,freq,incomeAmount);      
+        saveRecord(type,date,freq,incomeAmount); 
     }//GEN-LAST:event_incAddedMouseClicked
     
     public void saveRecord(String type, String date, String freq, String income) {
