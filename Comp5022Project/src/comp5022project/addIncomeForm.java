@@ -1,6 +1,10 @@
 package comp5022project;
 import javax.swing.*;
 import java.awt.*;
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 /**
@@ -454,15 +458,24 @@ public class addIncomeForm extends JFrame {
         freq = (String) frequent_Pay.getSelectedItem().toString();
         incomeAmount = input_Value.getText();
         
-        /*
-        These above are the values stored from the inputs by the user.
-        
-        save these into a file.
-        
-        we need to figure out a file structure.
-         */
+        saveRecord(type,date,freq,incomeAmount);      
     }//GEN-LAST:event_incAddedMouseClicked
-
+    
+    public void saveRecord(String type, String date, String freq, String income) {
+        try {
+            FileWriter fw = new FileWriter("Income Details.csv",true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            PrintWriter pw = new PrintWriter(bw);
+            
+            pw.append(type+","+date+","+freq+","+income+"\n");
+            pw.flush();
+            pw.close();
+            
+            JOptionPane.showMessageDialog(null, "Record saved");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,"Record not saved");
+        }
+    }
     /**
      * @param args the command line arguments
      */

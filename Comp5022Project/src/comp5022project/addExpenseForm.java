@@ -1,6 +1,9 @@
 package comp5022project;
 import javax.swing.*;
 import java.awt.*;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 /**
@@ -453,17 +456,24 @@ public class addExpenseForm extends JFrame {
         freq = (String) frequent_Pay.getSelectedItem().toString();
         incomeAmount = input_Value.getText();
         
-        /*
-        these above are the input values stored from the interface.
-        
-        we need these to update the balance.
-        
-        we need to maybe create a separate file to read and write the expenses?
-        
-        discuss about the file structure.
-        */
+        saveRecord(type,date,freq,incomeAmount);
     }//GEN-LAST:event_expAddedMouseClicked
 
+    public void saveRecord(String type, String date, String freq, String income) {
+        try {
+            FileWriter fw = new FileWriter("Expense Details.csv",true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            PrintWriter pw = new PrintWriter(bw);
+            
+            pw.append(type+","+date+","+freq+","+income+"\n");
+            pw.flush();
+            pw.close();
+            
+            JOptionPane.showMessageDialog(null, "Record saved");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,"Record not saved");
+        }
+    }
     /**
      * @param args the command line arguments
      */

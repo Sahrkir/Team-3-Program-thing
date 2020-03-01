@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package comp5022project;
 import java.io.IOException;
 import java.util.*;
@@ -13,17 +8,13 @@ import javax.swing.JFrame;
  * @author Jacob
  */
 public class Comp5022Project {
-
-    /**
-     * @param args the command line arguments
-     */
     
     /**
      * @param none
      * @return none
      * used to check the files are manipulated and saved the balanced from sprint 1/2
      */
-    void userMenu() throws IOException {
+    static void userMenu() throws IOException {
         boolean menuActive = true;
         Date date = new Date();
         Scanner in = new Scanner(System.in);  
@@ -62,12 +53,13 @@ public class Comp5022Project {
                     break;
             }
         }
-    }
+    } 
+
     public static void main(String[] args) throws Exception {
         ExpenseManager EM = new ExpenseManager();
         EM.setVisible(true);
         EM.pack();
         EM.setLocationRelativeTo(null);
         EM.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    }    
+    }
 }

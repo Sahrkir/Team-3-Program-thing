@@ -1,7 +1,6 @@
 package comp5022project;
 import javax.swing.*;
 import java.awt.*;
-import java.nio.file.Files;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 /**
@@ -17,7 +16,7 @@ public class Balance extends JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(true);
-        balance_Value.setText((String.valueOf(readBalance())));
+        balance_Value.setText((String.valueOf(user.getBalance())));
     }
 
     /**
@@ -207,7 +206,7 @@ public class Balance extends JFrame {
 
         currentLabel.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
         currentLabel.setForeground(new java.awt.Color(240, 240, 240));
-        currentLabel.setText("Your current balance:");
+        currentLabel.setText("Current Balance:");
 
         currency_Sign1.setFont(new java.awt.Font("Tahoma", 1, 48)); // NOI18N
         currency_Sign1.setForeground(new java.awt.Color(240, 240, 240));
@@ -231,14 +230,15 @@ public class Balance extends JFrame {
                     .addComponent(ExpensePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(ContentLayout.createSequentialGroup()
-                        .addGap(75, 75, 75)
+                        .addGap(41, 41, 41)
                         .addComponent(currency_Sign1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(10, 10, 10)
-                        .addComponent(balance_Value, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(ContentLayout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(currentLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(31, Short.MAX_VALUE))
+                        .addComponent(balance_Value, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ContentLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                        .addComponent(currentLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
         ContentLayout.setVerticalGroup(
             ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -377,17 +377,6 @@ public class Balance extends JFrame {
     private void ExpensePanelMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExpensePanelMouseReleased
         ExpensePanel.setBackground(new Color(0,0,91));
     }//GEN-LAST:event_ExpensePanelMouseReleased
-
-    double readBalance() {
-        /*
-        if file exists, read the value from the file.
-        
-        Return the value to be read into the interface
-        inside the constructor.
-        
-        */
-        return 0.0;
-    }
     
     /**
      * @param args the command line arguments
