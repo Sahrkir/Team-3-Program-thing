@@ -1,7 +1,6 @@
 package comp5022project;
 import javax.swing.*;
 import java.awt.*;
-import java.time.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 /**
@@ -38,8 +37,8 @@ public class Expenses extends JFrame {
         ExpensePanel = new javax.swing.JPanel();
         expense_title = new javax.swing.JLabel();
         currentExp = new javax.swing.JLabel();
-        displayExpDetails = new javax.swing.JScrollPane();
-        currentExpDetails = new javax.swing.JTextArea();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        table_of_expenses = new javax.swing.JTable();
         addExpenseButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -209,12 +208,15 @@ public class Expenses extends JFrame {
         currentExp.setForeground(new java.awt.Color(240, 240, 240));
         currentExp.setText("Current Expenses:");
 
-        currentExpDetails.setEditable(false);
-        currentExpDetails.setColumns(20);
-        currentExpDetails.setFont(new java.awt.Font("Monospaced", 1, 14)); // NOI18N
-        currentExpDetails.setRows(5);
-        currentExpDetails.setText("McDonalds £10.00 18/04/2018 12:45\n");
-        displayExpDetails.setViewportView(currentExpDetails);
+        table_of_expenses.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane1.setViewportView(table_of_expenses);
 
         addExpenseButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         addExpenseButton.setText("Add a new expense");
@@ -229,29 +231,28 @@ public class Expenses extends JFrame {
         ContentLayout.setHorizontalGroup(
             ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ContentLayout.createSequentialGroup()
-                .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(BalancePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(IncomePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(ExpensePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(30, 30, 30)
-                .addComponent(displayExpDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(60, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ContentLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ContentLayout.createSequentialGroup()
-                        .addComponent(currentExp, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(93, 93, 93))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ContentLayout.createSequentialGroup()
-                        .addComponent(addExpenseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(263, 263, 263))))
+                    .addGroup(ContentLayout.createSequentialGroup()
+                        .addGap(320, 320, 320)
+                        .addComponent(currentExp, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(ContentLayout.createSequentialGroup()
+                        .addGap(360, 360, 360)
+                        .addComponent(addExpenseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(ContentLayout.createSequentialGroup()
+                        .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(IncomePanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(BalancePanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(ExpensePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(39, 39, 39)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
         ContentLayout.setVerticalGroup(
             ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ContentLayout.createSequentialGroup()
-                .addGap(42, 42, 42)
+                .addGap(40, 40, 40)
                 .addComponent(currentExp)
-                .addGap(18, 18, 18)
+                .addGap(20, 20, 20)
                 .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(ContentLayout.createSequentialGroup()
                         .addComponent(BalancePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -259,10 +260,9 @@ public class Expenses extends JFrame {
                         .addComponent(IncomePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
                         .addComponent(ExpensePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(displayExpDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(addExpenseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
+                .addComponent(addExpenseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -394,6 +394,9 @@ public class Expenses extends JFrame {
         }
     }//GEN-LAST:event_addExpenseButtonMouseClicked
 
+    void showRecords() {
+        
+    }
     /**
      * @param args the command line arguments
      */
@@ -443,9 +446,9 @@ public class Expenses extends JFrame {
     private javax.swing.JButton addExpenseButton;
     private javax.swing.JLabel balance_title;
     private javax.swing.JLabel currentExp;
-    private javax.swing.JTextArea currentExpDetails;
-    private javax.swing.JScrollPane displayExpDetails;
     private javax.swing.JLabel expense_title;
     private javax.swing.JLabel income_title;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable table_of_expenses;
     // End of variables declaration//GEN-END:variables
 }
