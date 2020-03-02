@@ -1,6 +1,8 @@
 package comp5022project;
 import javax.swing.*;
 import java.awt.*;
+import java.io.FileReader;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 /**
@@ -10,12 +12,16 @@ import java.util.logging.Logger;
 public class Balance extends JFrame {
     
     User user;
+    Scanner scan;
     int coordinateX,coordinateY,mouseX,mouseY;
+    double balance;
+    String filePath = "balance.txt";
     
     public Balance() throws Exception {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(true);
+        readBalance();
     }
 
     /**
@@ -376,7 +382,19 @@ public class Balance extends JFrame {
     private void ExpensePanelMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExpensePanelMouseReleased
         ExpensePanel.setBackground(new Color(0,0,91));
     }//GEN-LAST:event_ExpensePanelMouseReleased
-    
+
+    void readBalance() {
+        try {
+            scan = new Scanner(new FileReader(filePath));
+            while (scan.hasNext()) {
+                balance = scan.nextDouble();
+            }
+            balance_Value.setText(String.format("%.2f",balance));
+            scan.close();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null,"No Balance");
+        }
+    }
     /**
      * @param args the command line arguments
      */

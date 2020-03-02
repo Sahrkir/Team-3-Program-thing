@@ -5,7 +5,6 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.time.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
@@ -420,7 +419,7 @@ public class Incomes extends JFrame {
                 model.addRow(dataRow);
             }
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null,"Records failed to show");
+            JOptionPane.showMessageDialog(null,"No Records");
         }
     }
     /**

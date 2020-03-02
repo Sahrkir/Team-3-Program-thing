@@ -1,23 +1,23 @@
 package comp5022project;
 import javax.swing.*;
 import java.awt.*;
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.PrintWriter;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author William Cuthbert
  */
 public class addExpenseForm extends JFrame {
 
-    User user;
+    Scanner scan;
+    double balance;
     int coordinateX,coordinateY,mouseX,mouseY;
-    String type,date,freq,incomeAmount;
+    String type,date,freq,incomeAmount,filePath = "balance.txt";
     
     public addExpenseForm() throws Exception {
         initComponents();
@@ -459,7 +459,8 @@ public class addExpenseForm extends JFrame {
         freq = (String) frequent_Pay.getSelectedItem().toString();
         incomeAmount = input_Value.getText();
         
-        saveRecord(type,date,freq,incomeAmount);
+        saveRecord(type,date,freq,String.format("%.2f",Double.parseDouble(incomeAmount)));
+        updateBalance();
     }//GEN-LAST:event_expAddedMouseClicked
 
     public void saveRecord(String type, String date, String freq, String income) {
@@ -475,6 +476,25 @@ public class addExpenseForm extends JFrame {
             JOptionPane.showMessageDialog(null, "Record saved");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,"Record not saved");
+        }
+    }
+    
+        public void updateBalance() {
+        try {
+            incomeAmount = input_Value.getText();
+            scan = new Scanner(new FileReader(filePath));
+            while (scan.hasNext()){
+                balance = scan.nextDouble();
+            }
+            
+            balance -= Double.parseDouble(incomeAmount);
+            PrintWriter pw = new PrintWriter(filePath);
+            pw.printf("%.2f", balance);
+            
+            pw.flush();
+            pw.close();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null,"Balance has not updated");
         }
     }
     /**

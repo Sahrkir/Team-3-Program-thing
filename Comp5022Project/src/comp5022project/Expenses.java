@@ -417,7 +417,7 @@ public class Expenses extends JFrame {
                 model.addRow(dataRow);
             }
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null,"Records failed to show");
+            JOptionPane.showMessageDialog(null,"No Records");
         }
     }
     /**
