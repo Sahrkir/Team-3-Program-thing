@@ -215,6 +215,7 @@ public class Incomes extends JFrame {
         currentInc.setForeground(new java.awt.Color(240, 240, 240));
         currentInc.setText("Current Incomes:");
 
+        table_of_incomes.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         table_of_incomes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -223,6 +224,11 @@ public class Incomes extends JFrame {
 
             }
         ));
+        table_of_incomes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        table_of_incomes.setEnabled(false);
+        table_of_incomes.setGridColor(new java.awt.Color(255, 255, 255));
+        table_of_incomes.setRowHeight(25);
+        table_of_incomes.setSelectionBackground(new java.awt.Color(153, 153, 153));
         jScrollPane1.setViewportView(table_of_incomes);
 
         newIncButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -230,6 +236,12 @@ public class Incomes extends JFrame {
         newIncButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 newIncButtonMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                newIncButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                newIncButtonMouseExited(evt);
             }
         });
 
@@ -402,6 +414,14 @@ public class Incomes extends JFrame {
     private void ExpensePanelMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExpensePanelMouseReleased
         ExpensePanel.setBackground(new Color(51,51,255));
     }//GEN-LAST:event_ExpensePanelMouseReleased
+
+    private void newIncButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newIncButtonMouseEntered
+        newIncButton.setBackground(Color.RED);
+    }//GEN-LAST:event_newIncButtonMouseEntered
+
+    private void newIncButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newIncButtonMouseExited
+        newIncButton.setBackground(new Color(240,240,240));
+    }//GEN-LAST:event_newIncButtonMouseExited
 
     public void showRecords() throws FileNotFoundException, IOException {
         try {

@@ -215,6 +215,7 @@ public class Expenses extends JFrame {
         currentExp.setForeground(new java.awt.Color(240, 240, 240));
         currentExp.setText("Current Expenses:");
 
+        table_of_expenses.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         table_of_expenses.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -223,6 +224,10 @@ public class Expenses extends JFrame {
 
             }
         ));
+        table_of_expenses.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        table_of_expenses.setEnabled(false);
+        table_of_expenses.setRowHeight(25);
+        table_of_expenses.setSelectionBackground(new java.awt.Color(153, 153, 153));
         jScrollPane1.setViewportView(table_of_expenses);
 
         addExpenseButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -230,6 +235,12 @@ public class Expenses extends JFrame {
         addExpenseButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 addExpenseButtonMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                addExpenseButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                addExpenseButtonMouseExited(evt);
             }
         });
 
@@ -400,6 +411,14 @@ public class Expenses extends JFrame {
             Logger.getLogger(Expenses.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_addExpenseButtonMouseClicked
+
+    private void addExpenseButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addExpenseButtonMouseEntered
+        addExpenseButton.setBackground(Color.RED);
+    }//GEN-LAST:event_addExpenseButtonMouseEntered
+
+    private void addExpenseButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addExpenseButtonMouseExited
+        addExpenseButton.setBackground(new Color(240,240,240));
+    }//GEN-LAST:event_addExpenseButtonMouseExited
       
     public void showRecords() throws FileNotFoundException, IOException {
         try {
