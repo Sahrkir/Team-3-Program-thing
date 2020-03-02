@@ -189,7 +189,7 @@ public class addExpenseForm extends JFrame {
             .addGroup(ExpensePanelLayout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(expense_title)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
         ExpensePanelLayout.setVerticalGroup(
             ExpensePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -203,11 +203,11 @@ public class addExpenseForm extends JFrame {
         addExpense_title.setForeground(new java.awt.Color(255, 255, 255));
         addExpense_title.setText("Adding Expenses");
 
-        type_Of_Pay.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        type_Of_Pay.setFont(new java.awt.Font("Tahoma", 1, 28)); // NOI18N
         type_Of_Pay.setForeground(new java.awt.Color(240, 240, 240));
         type_Of_Pay.setText("Type of payment:");
 
-        when.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        when.setFont(new java.awt.Font("Tahoma", 1, 28)); // NOI18N
         when.setForeground(new java.awt.Color(240, 240, 240));
         when.setText("When is it due:");
 
@@ -256,20 +256,21 @@ public class addExpenseForm extends JFrame {
     due_Date.setFieldFont(new java.awt.Font("Tahoma", java.awt.Font.BOLD, 14));
     due_Date.setNavigateFont(new java.awt.Font("Tahoma", java.awt.Font.BOLD, 14));
 
-    frequency.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+    frequency.setFont(new java.awt.Font("Tahoma", 1, 28)); // NOI18N
     frequency.setForeground(new java.awt.Color(240, 240, 240));
     frequency.setText("How frequent:");
 
     frequent_Pay.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
     frequent_Pay.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Single", "Daily", "Weekly", "Monthly", "Yearly" }));
 
-    amount.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+    amount.setFont(new java.awt.Font("Tahoma", 1, 28)); // NOI18N
     amount.setForeground(new java.awt.Color(240, 240, 240));
     amount.setText("Amount: £");
 
     input_Type.setBackground(new java.awt.Color(0, 0, 91));
     input_Type.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
     input_Type.setForeground(new java.awt.Color(240, 240, 240));
+    input_Type.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
     expAdded.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
     expAdded.setText("ADD");
@@ -277,88 +278,97 @@ public class addExpenseForm extends JFrame {
         public void mouseClicked(java.awt.event.MouseEvent evt) {
             expAddedMouseClicked(evt);
         }
+        public void mouseEntered(java.awt.event.MouseEvent evt) {
+            expAddedMouseEntered(evt);
+        }
+        public void mouseExited(java.awt.event.MouseEvent evt) {
+            expAddedMouseExited(evt);
+        }
     });
 
     input_Value.setBackground(new java.awt.Color(0, 0, 91));
     input_Value.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
     input_Value.setForeground(new java.awt.Color(240, 240, 240));
+    input_Value.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
     javax.swing.GroupLayout ContentLayout = new javax.swing.GroupLayout(Content);
     Content.setLayout(ContentLayout);
     ContentLayout.setHorizontalGroup(
         ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(ContentLayout.createSequentialGroup()
-            .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                .addComponent(ExpensePanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(IncomePanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(BalancePanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGap(323, 323, 323)
+            .addComponent(addExpense_title))
+        .addGroup(ContentLayout.createSequentialGroup()
+            .addComponent(BalancePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(40, 40, 40)
+            .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(type_Of_Pay)
+                .addGroup(ContentLayout.createSequentialGroup()
+                    .addGap(40, 40, 40)
+                    .addComponent(when, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGap(20, 20, 20)
+            .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(input_Type, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(due_Date, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        .addGroup(ContentLayout.createSequentialGroup()
+            .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(IncomePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(ExpensePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGap(10, 10, 10)
             .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(ContentLayout.createSequentialGroup()
-                    .addGap(123, 123, 123)
-                    .addComponent(addExpense_title)
-                    .addGap(0, 244, Short.MAX_VALUE))
-                .addGroup(ContentLayout.createSequentialGroup()
+                    .addGap(90, 90, 90)
                     .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(frequency, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(ContentLayout.createSequentialGroup()
-                            .addGap(233, 233, 233)
-                            .addComponent(expAdded, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(ContentLayout.createSequentialGroup()
-                            .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(ContentLayout.createSequentialGroup()
-                                            .addGap(83, 83, 83)
-                                            .addComponent(when, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(ContentLayout.createSequentialGroup()
-                                            .addGap(93, 93, 93)
-                                            .addComponent(frequency, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addComponent(amount, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(ContentLayout.createSequentialGroup()
-                                    .addGap(53, 53, 53)
-                                    .addComponent(type_Of_Pay)))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(input_Type, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
-                                .addComponent(due_Date, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(frequent_Pay, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(input_Value, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE))))
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addGap(60, 60, 60)
+                            .addComponent(amount, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(frequent_Pay, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(input_Value, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(ContentLayout.createSequentialGroup()
+                    .addGap(233, 233, 233)
+                    .addComponent(expAdded, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGap(75, 75, 75))
     );
     ContentLayout.setVerticalGroup(
         ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(ContentLayout.createSequentialGroup()
-            .addContainerGap()
+            .addGap(13, 13, 13)
             .addComponent(addExpense_title)
-            .addGap(62, 62, 62)
-            .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGap(58, 58, 58)
+            .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(ContentLayout.createSequentialGroup()
-                    .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(ContentLayout.createSequentialGroup()
-                            .addComponent(type_Of_Pay)
-                            .addGap(25, 25, 25)
-                            .addComponent(when)
-                            .addGap(21, 21, 21)
-                            .addComponent(frequency))
-                        .addGroup(ContentLayout.createSequentialGroup()
-                            .addGap(2, 2, 2)
-                            .addComponent(input_Type, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(due_Date, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGap(20, 20, 20)
-                            .addComponent(frequent_Pay, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGap(20, 20, 20)
-                    .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(amount)
-                        .addComponent(input_Value, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(93, 93, 93)
-                    .addComponent(expAdded, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(4, 4, 4)
+                    .addComponent(BalancePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(ContentLayout.createSequentialGroup()
-                    .addComponent(BalancePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, 0)
+                    .addComponent(type_Of_Pay)
+                    .addGap(26, 26, 26)
+                    .addComponent(when))
+                .addGroup(ContentLayout.createSequentialGroup()
+                    .addComponent(input_Type, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(17, 17, 17)
+                    .addComponent(due_Date, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(ContentLayout.createSequentialGroup()
                     .addComponent(IncomePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, 0)
-                    .addComponent(ExpensePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-            .addGap(0, 240, Short.MAX_VALUE))
+                    .addComponent(ExpensePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(ContentLayout.createSequentialGroup()
+                    .addGap(20, 20, 20)
+                    .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(ContentLayout.createSequentialGroup()
+                            .addComponent(frequency)
+                            .addGap(36, 36, 36)
+                            .addComponent(amount)
+                            .addGap(8, 8, 8))
+                        .addGroup(ContentLayout.createSequentialGroup()
+                            .addComponent(frequent_Pay, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(30, 30, 30)
+                            .addComponent(input_Value, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGap(50, 50, 50)
+                    .addComponent(expAdded, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGap(14, 14, 14))
     );
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -462,6 +472,14 @@ public class addExpenseForm extends JFrame {
         saveRecord(type,date,freq,String.format("%.2f",Double.parseDouble(incomeAmount)));
         updateBalance();
     }//GEN-LAST:event_expAddedMouseClicked
+
+    private void expAddedMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_expAddedMouseEntered
+        expAdded.setBackground(Color.RED);
+    }//GEN-LAST:event_expAddedMouseEntered
+
+    private void expAddedMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_expAddedMouseExited
+        expAdded.setBackground(new Color(240,240,240));
+    }//GEN-LAST:event_expAddedMouseExited
 
     public void saveRecord(String type, String date, String freq, String income) {
         try {
