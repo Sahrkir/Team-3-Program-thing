@@ -2,9 +2,12 @@ package comp5022project;
 import javax.swing.*;
 import java.awt.*;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
@@ -14,9 +17,11 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Expenses extends JFrame {
     
-    User user;
     String filePath = "Expense Details.csv";
+    String balFilePath = "balance.txt";
     int coordinateX,coordinateY,mouseX,mouseY;
+    DefaultTableModel model;
+    Scanner scan;
     
     public Expenses() throws Exception {
         initComponents();
@@ -47,6 +52,7 @@ public class Expenses extends JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         table_of_expenses = new javax.swing.JTable();
         addExpenseButton = new javax.swing.JButton();
+        DelButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(800, 800));
@@ -221,11 +227,10 @@ public class Expenses extends JFrame {
 
             },
             new String [] {
-
+                "Type of pay", "Frequency", "Date", "Amount"
             }
         ));
         table_of_expenses.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        table_of_expenses.setEnabled(false);
         table_of_expenses.setRowHeight(25);
         table_of_expenses.setSelectionBackground(new java.awt.Color(153, 153, 153));
         jScrollPane1.setViewportView(table_of_expenses);
@@ -244,6 +249,20 @@ public class Expenses extends JFrame {
             }
         });
 
+        DelButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        DelButton.setText("Delete an expense");
+        DelButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                DelButtonMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                DelButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                DelButtonMouseExited(evt);
+            }
+        });
+
         javax.swing.GroupLayout ContentLayout = new javax.swing.GroupLayout(Content);
         Content.setLayout(ContentLayout);
         ContentLayout.setHorizontalGroup(
@@ -254,15 +273,17 @@ public class Expenses extends JFrame {
                         .addGap(320, 320, 320)
                         .addComponent(currentExp, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(ContentLayout.createSequentialGroup()
-                        .addGap(360, 360, 360)
-                        .addComponent(addExpenseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(ContentLayout.createSequentialGroup()
                         .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(IncomePanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(BalancePanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(ExpensePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(39, 39, 39)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(ContentLayout.createSequentialGroup()
+                        .addGap(278, 278, 278)
+                        .addComponent(addExpenseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(49, 49, 49)
+                        .addComponent(DelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(51, Short.MAX_VALUE))
         );
         ContentLayout.setVerticalGroup(
@@ -279,8 +300,11 @@ public class Expenses extends JFrame {
                         .addGap(0, 0, 0)
                         .addComponent(ExpensePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
-                .addComponent(addExpenseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
+                .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(addExpenseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(DelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -419,15 +443,51 @@ public class Expenses extends JFrame {
     private void addExpenseButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addExpenseButtonMouseExited
         addExpenseButton.setBackground(new Color(240,240,240));
     }//GEN-LAST:event_addExpenseButtonMouseExited
+
+    private void DelButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DelButtonMouseClicked
+        try {
+            int i = table_of_expenses.getSelectedRow();            
+            if (i >= 0) {
+                model.removeRow(i);
+            }
+            saveRecord();
+        } catch (Exception ex) {
+            Logger.getLogger(Incomes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_DelButtonMouseClicked
+
+    private void DelButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DelButtonMouseEntered
+        DelButton.setBackground(Color.RED);
+    }//GEN-LAST:event_DelButtonMouseEntered
+
+    private void DelButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DelButtonMouseExited
+        DelButton.setBackground(new Color(240,240,240));
+    }//GEN-LAST:event_DelButtonMouseExited
       
+    public void saveRecord() {
+        try {
+            FileWriter fw = new FileWriter(filePath);
+            BufferedWriter bw = new BufferedWriter(fw);
+            
+            for (int i = 0; i < table_of_expenses.getRowCount(); i++) {
+                for (int j = 0; j < table_of_expenses.getColumnCount(); j++) {
+                    bw.write(table_of_expenses.getValueAt(i, j).toString()+",");
+                }
+                bw.newLine();
+            }
+            
+            bw.close();
+            fw.close();
+        } catch (IOException ex) {
+            Logger.getLogger(Incomes.class.getName()).log(Level.SEVERE, null, ex);
+        }  
+    }
+    
     public void showRecords() throws FileNotFoundException, IOException {
         try {
             BufferedReader br = new BufferedReader(new FileReader(filePath));
-            String firstLine = br.readLine().trim();
-            String[] columnsName = firstLine.split(",");
-            DefaultTableModel model = (DefaultTableModel) table_of_expenses.getModel();
-            model.setColumnIdentifiers(columnsName);
-            
+            model = (DefaultTableModel) table_of_expenses.getModel();
+                       
             Object[] tableLines = br.lines().toArray();
             
             for(int i = 0; i < tableLines.length; i++) {
@@ -482,6 +542,7 @@ public class Expenses extends JFrame {
     private javax.swing.JPanel BalancePanel;
     private javax.swing.JPanel Banner;
     private javax.swing.JPanel Content;
+    private javax.swing.JButton DelButton;
     private javax.swing.JPanel ExpensePanel;
     private javax.swing.JPanel IncomePanel;
     private javax.swing.JLabel Title;

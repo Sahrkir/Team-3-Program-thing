@@ -3,12 +3,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,6 +18,7 @@ import javax.swing.table.DefaultTableModel;
 public class Incomes extends JFrame {
     
     String filePath = "Income Details.csv";
+    String balFilePath = "balance.txt";
     int coordinateX,coordinateY,mouseX,mouseY;
     DefaultTableModel model;
     Scanner scan;
@@ -228,7 +227,7 @@ public class Incomes extends JFrame {
 
             },
             new String [] {
-
+                "Type of pay", "Frequency", "Date", "Amount"
             }
         ));
         table_of_incomes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -409,16 +408,11 @@ public class Incomes extends JFrame {
 
     private void DelButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DelButtonMouseClicked
         try {
-            int i = table_of_incomes.getSelectedRow();
-            int c = table_of_incomes.getSelectedColumn();
-            String g = (String) table_of_incomes.getValueAt(i, c);
-            
+            int i = table_of_incomes.getSelectedRow();            
             if (i >= 0) {
                 model.removeRow(i);
-                updateRecord(g);
-            } else {
-                JOptionPane.showMessageDialog(null, "Delete error");
             }
+            saveRecord();
         } catch (Exception ex) {
             Logger.getLogger(Incomes.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -481,49 +475,29 @@ public class Incomes extends JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_newIncButtonActionPerformed
 
-    public void updateRecord(String selectedWord) {
-
-        String tempFile = "temp.csv";
-        File oldFile = new File(filePath);
-        File newFile = new File(tempFile);
-        String a = "";String b = "";String c = "";String d = "";
-
+    public void saveRecord() {
         try {
-            FileWriter fw = new FileWriter(tempFile,true);
+            FileWriter fw = new FileWriter(filePath);
             BufferedWriter bw = new BufferedWriter(fw);
-            PrintWriter pw = new PrintWriter(bw);
-            scan = new Scanner(new File(filePath));
-            scan.useDelimiter("[,\n]");
             
-            while(scan.hasNext()) {
-                a = scan.next();
-                b = scan.next();
-                c = scan.next();
-                d = scan.next();
-                if (!a.equals(selectedWord)) {
-                    pw.append(a+","+b+","+c+","+d);
+            for (int i = 0; i < table_of_incomes.getRowCount(); i++) {
+                for (int j = 0; j < table_of_incomes.getColumnCount(); j++) {
+                    bw.write(table_of_incomes.getValueAt(i, j).toString()+",");
                 }
+                bw.newLine();
             }
             
-            scan.close();
-            pw.flush();
-            pw.close();
-            oldFile.delete();
-            File f = new File(filePath);
-            newFile.renameTo(f);
-            
-        } catch (Exception e) {
-            
-        }
+            bw.close();
+            fw.close();
+        } catch (IOException ex) {
+            Logger.getLogger(Incomes.class.getName()).log(Level.SEVERE, null, ex);
+        }  
     }
     
     public void showRecords() throws FileNotFoundException, IOException {
         try {
             BufferedReader br = new BufferedReader(new FileReader("Income Details.csv"));
-            String firstLine = br.readLine().trim();
-            String[] columnsName = firstLine.split(",");
             model = (DefaultTableModel) table_of_incomes.getModel();
-            model.setColumnIdentifiers(columnsName);
             
             Object[] tableLines = br.lines().toArray();
             
@@ -537,9 +511,6 @@ public class Incomes extends JFrame {
         }
     }
     
-    void clearRecord() {
-        
-    }
     /**
      * @param args the command line arguments
      */
