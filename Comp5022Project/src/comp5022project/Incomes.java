@@ -2,9 +2,14 @@ package comp5022project;
 import javax.swing.*;
 import java.awt.*;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
@@ -14,9 +19,10 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Incomes extends JFrame {
     
-    User user;
     String filePath = "Income Details.csv";
     int coordinateX,coordinateY,mouseX,mouseY;
+    DefaultTableModel model;
+    Scanner scan;
     
     public Incomes() throws Exception {
         initComponents();
@@ -46,6 +52,7 @@ public class Incomes extends JFrame {
         currentInc = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         table_of_incomes = new javax.swing.JTable();
+        DelButton = new javax.swing.JButton();
         newIncButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -225,14 +232,27 @@ public class Incomes extends JFrame {
             }
         ));
         table_of_incomes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        table_of_incomes.setEnabled(false);
         table_of_incomes.setGridColor(new java.awt.Color(255, 255, 255));
         table_of_incomes.setRowHeight(25);
         table_of_incomes.setSelectionBackground(new java.awt.Color(153, 153, 153));
         jScrollPane1.setViewportView(table_of_incomes);
 
+        DelButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        DelButton.setText("Delete an income");
+        DelButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                DelButtonMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                DelButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                DelButtonMouseExited(evt);
+            }
+        });
+
         newIncButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        newIncButton.setText("Add a new income");
+        newIncButton.setText("Add an new income");
         newIncButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 newIncButtonMouseClicked(evt);
@@ -242,6 +262,11 @@ public class Incomes extends JFrame {
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 newIncButtonMouseExited(evt);
+            }
+        });
+        newIncButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newIncButtonActionPerformed(evt);
             }
         });
 
@@ -264,8 +289,10 @@ public class Incomes extends JFrame {
                         .addComponent(currentInc, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(150, 150, 150))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ContentLayout.createSequentialGroup()
-                        .addComponent(newIncButton, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(267, 267, 267))))
+                        .addComponent(newIncButton)
+                        .addGap(67, 67, 67)
+                        .addComponent(DelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(116, 116, 116))))
         );
         ContentLayout.setVerticalGroup(
             ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -281,8 +308,10 @@ public class Incomes extends JFrame {
                         .addGap(0, 0, 0)
                         .addComponent(ExpensePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
-                .addComponent(newIncButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(DelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(newIncButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -378,18 +407,22 @@ public class Incomes extends JFrame {
         BalancePanel.setBackground(new Color(0,0,95));
     }//GEN-LAST:event_BalancePanelMouseExited
 
-    private void newIncButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newIncButtonMouseClicked
+    private void DelButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DelButtonMouseClicked
         try {
-            addIncomeForm aif = new addIncomeForm();
-            aif.setVisible(true);
-            aif.pack();
-            aif.setLocationRelativeTo(null);
-            aif.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            this.dispose();
+            int i = table_of_incomes.getSelectedRow();
+            int c = table_of_incomes.getSelectedColumn();
+            String g = (String) table_of_incomes.getValueAt(i, c);
+            
+            if (i >= 0) {
+                model.removeRow(i);
+                updateRecord(g);
+            } else {
+                JOptionPane.showMessageDialog(null, "Delete error");
+            }
         } catch (Exception ex) {
             Logger.getLogger(Incomes.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_newIncButtonMouseClicked
+    }//GEN-LAST:event_DelButtonMouseClicked
 
     private void BalancePanelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BalancePanelMousePressed
         BalancePanel.setBackground(new Color(51,51,255));
@@ -415,6 +448,27 @@ public class Incomes extends JFrame {
         ExpensePanel.setBackground(new Color(51,51,255));
     }//GEN-LAST:event_ExpensePanelMouseReleased
 
+    private void DelButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DelButtonMouseEntered
+        DelButton.setBackground(Color.RED);
+    }//GEN-LAST:event_DelButtonMouseEntered
+
+    private void DelButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DelButtonMouseExited
+        DelButton.setBackground(new Color(240,240,240));
+    }//GEN-LAST:event_DelButtonMouseExited
+
+    private void newIncButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newIncButtonMouseClicked
+        try {
+            addIncomeForm aif = new addIncomeForm();
+            aif.setVisible(true);
+            aif.pack();
+            aif.setLocationRelativeTo(null);
+            aif.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            this.dispose();
+        } catch (Exception ex) {
+            Logger.getLogger(Incomes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_newIncButtonMouseClicked
+
     private void newIncButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newIncButtonMouseEntered
         newIncButton.setBackground(Color.RED);
     }//GEN-LAST:event_newIncButtonMouseEntered
@@ -423,12 +477,52 @@ public class Incomes extends JFrame {
         newIncButton.setBackground(new Color(240,240,240));
     }//GEN-LAST:event_newIncButtonMouseExited
 
+    private void newIncButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newIncButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_newIncButtonActionPerformed
+
+    public void updateRecord(String selectedWord) {
+
+        String tempFile = "temp.csv";
+        File oldFile = new File(filePath);
+        File newFile = new File(tempFile);
+        String a = "";String b = "";String c = "";String d = "";
+
+        try {
+            FileWriter fw = new FileWriter(tempFile,true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            PrintWriter pw = new PrintWriter(bw);
+            scan = new Scanner(new File(filePath));
+            scan.useDelimiter("[,\n]");
+            
+            while(scan.hasNext()) {
+                a = scan.next();
+                b = scan.next();
+                c = scan.next();
+                d = scan.next();
+                if (!a.equals(selectedWord)) {
+                    pw.append(a+","+b+","+c+","+d);
+                }
+            }
+            
+            scan.close();
+            pw.flush();
+            pw.close();
+            oldFile.delete();
+            File f = new File(filePath);
+            newFile.renameTo(f);
+            
+        } catch (Exception e) {
+            
+        }
+    }
+    
     public void showRecords() throws FileNotFoundException, IOException {
         try {
-            BufferedReader br = new BufferedReader(new FileReader(filePath));
+            BufferedReader br = new BufferedReader(new FileReader("Income Details.csv"));
             String firstLine = br.readLine().trim();
             String[] columnsName = firstLine.split(",");
-            DefaultTableModel model = (DefaultTableModel) table_of_incomes.getModel();
+            model = (DefaultTableModel) table_of_incomes.getModel();
             model.setColumnIdentifiers(columnsName);
             
             Object[] tableLines = br.lines().toArray();
@@ -441,6 +535,10 @@ public class Incomes extends JFrame {
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null,"No Records");
         }
+    }
+    
+    void clearRecord() {
+        
     }
     /**
      * @param args the command line arguments
@@ -485,6 +583,7 @@ public class Incomes extends JFrame {
     private javax.swing.JPanel BalancePanel;
     private javax.swing.JPanel Banner;
     private javax.swing.JPanel Content;
+    private javax.swing.JButton DelButton;
     private javax.swing.JPanel ExpensePanel;
     private javax.swing.JPanel IncomePanel;
     private javax.swing.JLabel Title;
