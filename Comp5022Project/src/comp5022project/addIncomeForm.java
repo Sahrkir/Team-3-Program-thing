@@ -471,7 +471,7 @@ public class addIncomeForm extends JFrame {
         date = due_Date.getText();
         freq = (String) frequent_Pay.getSelectedItem().toString();
         incomeAmount = input_Value.getText();
-        
+    
         saveRecord(type,date,freq,String.format("%.2f",Double.parseDouble(incomeAmount)));
         updateBalance();
     }//GEN-LAST:event_incAddedMouseClicked
