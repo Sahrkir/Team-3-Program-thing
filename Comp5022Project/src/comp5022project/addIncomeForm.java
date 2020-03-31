@@ -5,6 +5,9 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.PrintWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -467,13 +470,52 @@ public class addIncomeForm extends JFrame {
     }//GEN-LAST:event_BalancePanelMouseExited
 
     private void incAddedMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_incAddedMouseClicked
+        Boolean errorDetected = false;
         type = input_Type.getText();
         date = due_Date.getText();
+        String incomeValue = input_Value.getText();
         freq = (String) frequent_Pay.getSelectedItem().toString();
         incomeAmount = input_Value.getText();
-    
-        saveRecord(type,date,freq,String.format("%.2f",Double.parseDouble(incomeAmount)));
-        updateBalance();
+        String errorText = "";
+        
+        if(type.equals("")){
+            errorDetected = true;
+            errorText += "- No type of payment was entered\n";
+        }        
+        
+        SimpleDateFormat format=new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            Date dateValue = format.parse(date);
+            if(dateValue.compareTo(new Date()) < 0){
+                throw new IllegalArgumentException();
+            }
+        } catch (ParseException e){
+            errorDetected = true;
+            JOptionPane.showMessageDialog(null, "Epic");
+        } catch(IllegalArgumentException e){
+            errorDetected = true;
+            errorText += "- The date is invalid (Did you enter a past date?)\n";
+        }
+        
+        try {
+            int tempIncome = Integer.parseInt(incomeAmount);
+            if(tempIncome <= 0){
+                throw new IllegalArgumentException();
+            }
+        } catch (NumberFormatException e){
+            errorDetected = true;
+            errorText += "- The amount of money is an invalid number\n";
+        } catch (IllegalArgumentException e){
+            errorDetected = true;
+            errorText += "- The amount of money entered is below zero (Did you mean to add an expense instead?)\n";
+        }
+        
+        if(!errorDetected){
+            saveRecord(type,date,freq,String.format("%.2f",Double.parseDouble(incomeAmount)));
+            updateBalance();
+        } else {
+            JOptionPane.showMessageDialog(null, "The following errors were found in your inputs:\n\n"+errorText);
+        }
     }//GEN-LAST:event_incAddedMouseClicked
 
     private void incAddedMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_incAddedMouseEntered
