@@ -18,16 +18,16 @@ import javax.swing.table.DefaultTableModel;
 public class Expenses extends JFrame {
     
     String filePath = "Expense Details.csv";
-    String balFilePath = "balance.txt";
-    int coordinateX,coordinateY,mouseX,mouseY;
+    String balFilePath = "balance.txt", styleFilePath = "styles.txt";
+    int coordinateX,coordinateY,mouseX,mouseY,currentColorContent,currentColorBanner;
     DefaultTableModel model;
     Scanner scan;
     
     public Expenses() throws Exception {
         initComponents();
         this.setLocationRelativeTo(null);
-        this.setResizable(true);
         showRecords();
+        readStyles();
     }
 
     /**
@@ -53,6 +53,14 @@ public class Expenses extends JFrame {
         table_of_expenses = new javax.swing.JTable();
         addExpenseButton = new javax.swing.JButton();
         DelButton = new javax.swing.JButton();
+        SettingsPanel = new javax.swing.JPanel();
+        setting_title = new javax.swing.JLabel();
+        COLOUR = new javax.swing.JLabel();
+        TEXT = new javax.swing.JLabel();
+        Green = new javax.swing.JButton();
+        Pink = new javax.swing.JButton();
+        White = new javax.swing.JButton();
+        Default = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(800, 800));
@@ -106,12 +114,6 @@ public class Expenses extends JFrame {
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 BalancePanelMouseExited(evt);
             }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                BalancePanelMousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                BalancePanelMouseReleased(evt);
-            }
         });
 
         balance_title.setFont(new java.awt.Font("Felix Titling", 1, 24)); // NOI18N
@@ -125,7 +127,7 @@ public class Expenses extends JFrame {
             .addGroup(BalancePanelLayout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(balance_title)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
         BalancePanelLayout.setVerticalGroup(
             BalancePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -147,12 +149,6 @@ public class Expenses extends JFrame {
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 IncomePanelMouseExited(evt);
             }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                IncomePanelMousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                IncomePanelMouseReleased(evt);
-            }
         });
 
         income_title.setFont(new java.awt.Font("Felix Titling", 1, 24)); // NOI18N
@@ -166,7 +162,7 @@ public class Expenses extends JFrame {
             .addGroup(IncomePanelLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(income_title)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
         IncomePanelLayout.setVerticalGroup(
             IncomePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -187,12 +183,6 @@ public class Expenses extends JFrame {
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 ExpensePanelMouseExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                ExpensePanelMousePressed(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                ExpensePanelMouseReleased(evt);
             }
         });
 
@@ -263,48 +253,145 @@ public class Expenses extends JFrame {
             }
         });
 
+        SettingsPanel.setBackground(new java.awt.Color(51, 51, 255));
+        SettingsPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        setting_title.setFont(new java.awt.Font("Felix Titling", 1, 24)); // NOI18N
+        setting_title.setForeground(new java.awt.Color(255, 255, 255));
+        setting_title.setText("settings: ");
+
+        COLOUR.setFont(new java.awt.Font("Felix Titling", 1, 24)); // NOI18N
+        COLOUR.setForeground(new java.awt.Color(255, 255, 255));
+        COLOUR.setText("Colours: ");
+
+        TEXT.setFont(new java.awt.Font("Felix Titling", 1, 24)); // NOI18N
+        TEXT.setForeground(new java.awt.Color(255, 255, 255));
+        TEXT.setText("Text:");
+
+        Green.setBackground(new java.awt.Color(51, 204, 0));
+        Green.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        Green.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                GreenMouseClicked(evt);
+            }
+        });
+
+        Pink.setBackground(new java.awt.Color(255, 0, 204));
+        Pink.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        Pink.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                PinkMouseClicked(evt);
+            }
+        });
+
+        White.setBackground(new java.awt.Color(255, 255, 255));
+        White.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        White.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                WhiteMouseClicked(evt);
+            }
+        });
+
+        Default.setBackground(new java.awt.Color(0, 0, 255));
+        Default.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        Default.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                DefaultMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout SettingsPanelLayout = new javax.swing.GroupLayout(SettingsPanel);
+        SettingsPanel.setLayout(SettingsPanelLayout);
+        SettingsPanelLayout.setHorizontalGroup(
+            SettingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(SettingsPanelLayout.createSequentialGroup()
+                .addGroup(SettingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(SettingsPanelLayout.createSequentialGroup()
+                        .addGap(45, 45, 45)
+                        .addComponent(COLOUR)
+                        .addGap(86, 86, 86)
+                        .addComponent(TEXT))
+                    .addGroup(SettingsPanelLayout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addComponent(Default)
+                        .addGap(18, 18, 18)
+                        .addComponent(Pink)
+                        .addGap(18, 18, 18)
+                        .addComponent(Green)
+                        .addGap(18, 18, 18)
+                        .addComponent(White))
+                    .addGroup(SettingsPanelLayout.createSequentialGroup()
+                        .addGap(149, 149, 149)
+                        .addComponent(setting_title)))
+                .addContainerGap(68, Short.MAX_VALUE))
+        );
+        SettingsPanelLayout.setVerticalGroup(
+            SettingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(SettingsPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(setting_title)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(SettingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(COLOUR)
+                    .addComponent(TEXT))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(SettingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(Pink, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(White, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Green, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Default, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(32, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout ContentLayout = new javax.swing.GroupLayout(Content);
         Content.setLayout(ContentLayout);
         ContentLayout.setHorizontalGroup(
             ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ContentLayout.createSequentialGroup()
+                .addComponent(SettingsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(ContentLayout.createSequentialGroup()
+                .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(BalancePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(IncomePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ExpensePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(ContentLayout.createSequentialGroup()
-                        .addGap(320, 320, 320)
+                        .addGap(120, 120, 120)
                         .addComponent(currentExp, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(ContentLayout.createSequentialGroup()
-                        .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(IncomePanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(BalancePanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(ExpensePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(39, 39, 39)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(ContentLayout.createSequentialGroup()
-                        .addGap(278, 278, 278)
-                        .addComponent(addExpenseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(49, 49, 49)
-                        .addComponent(DelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(51, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ContentLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(43, 43, 43))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ContentLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(addExpenseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(49, 49, 49)
+                .addComponent(DelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(111, 111, 111))
         );
         ContentLayout.setVerticalGroup(
             ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ContentLayout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addComponent(currentExp)
-                .addGap(20, 20, 20)
                 .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(ContentLayout.createSequentialGroup()
+                        .addGap(104, 104, 104)
                         .addComponent(BalancePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
                         .addComponent(IncomePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
                         .addComponent(ExpensePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32)
-                .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addGroup(ContentLayout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addComponent(currentExp)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(27, 27, 27)
+                .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(addExpenseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(DelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addGap(36, 36, 36)
+                .addComponent(SettingsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -350,11 +437,13 @@ public class Expenses extends JFrame {
     }//GEN-LAST:event_ExpensePanelMouseClicked
 
     private void ExpensePanelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExpensePanelMouseEntered
-        ExpensePanel.setBackground(new Color(51,51,255));
+        currentColorBanner = Banner.getBackground().getRGB();
+        ExpensePanel.setBackground(new Color(currentColorBanner));
     }//GEN-LAST:event_ExpensePanelMouseEntered
 
     private void ExpensePanelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExpensePanelMouseExited
-        ExpensePanel.setBackground(new Color(0,0,95));
+        currentColorContent = Content.getBackground().getRGB();
+        ExpensePanel.setBackground(new Color(currentColorContent));
     }//GEN-LAST:event_ExpensePanelMouseExited
 
     private void IncomePanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_IncomePanelMouseClicked
@@ -371,11 +460,13 @@ public class Expenses extends JFrame {
     }//GEN-LAST:event_IncomePanelMouseClicked
 
     private void IncomePanelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_IncomePanelMouseEntered
-        IncomePanel.setBackground(new Color(51,51,255));
+        currentColorBanner = Banner.getBackground().getRGB();
+        IncomePanel.setBackground(new Color(currentColorBanner));
     }//GEN-LAST:event_IncomePanelMouseEntered
 
     private void IncomePanelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_IncomePanelMouseExited
-        IncomePanel.setBackground(new Color(0,0,95));
+        currentColorContent = Content.getBackground().getRGB();
+        IncomePanel.setBackground(new Color(currentColorContent));
     }//GEN-LAST:event_IncomePanelMouseExited
 
     private void BalancePanelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BalancePanelMouseClicked
@@ -392,36 +483,14 @@ public class Expenses extends JFrame {
     }//GEN-LAST:event_BalancePanelMouseClicked
 
     private void BalancePanelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BalancePanelMouseEntered
-        BalancePanel.setBackground(new Color(51,51,255));
+        currentColorBanner = Banner.getBackground().getRGB();
+        BalancePanel.setBackground(new Color(currentColorBanner));
     }//GEN-LAST:event_BalancePanelMouseEntered
 
     private void BalancePanelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BalancePanelMouseExited
-        BalancePanel.setBackground(new Color(0,0,95));
+        currentColorContent = Content.getBackground().getRGB();
+        BalancePanel.setBackground(new Color(currentColorContent));
     }//GEN-LAST:event_BalancePanelMouseExited
-
-    private void BalancePanelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BalancePanelMousePressed
-        BalancePanel.setBackground(new Color(51,51,255));
-    }//GEN-LAST:event_BalancePanelMousePressed
-
-    private void IncomePanelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_IncomePanelMousePressed
-        IncomePanel.setBackground(new Color(51,51,255));
-    }//GEN-LAST:event_IncomePanelMousePressed
-
-    private void IncomePanelMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_IncomePanelMouseReleased
-        IncomePanel.setBackground(new Color(0,0,91));
-    }//GEN-LAST:event_IncomePanelMouseReleased
-
-    private void BalancePanelMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BalancePanelMouseReleased
-        BalancePanel.setBackground(new Color(0,0,91));
-    }//GEN-LAST:event_BalancePanelMouseReleased
-
-    private void ExpensePanelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExpensePanelMousePressed
-        ExpensePanel.setBackground(new Color(51,51,255));
-    }//GEN-LAST:event_ExpensePanelMousePressed
-
-    private void ExpensePanelMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ExpensePanelMouseReleased
-        ExpensePanel.setBackground(new Color(0,0,91));
-    }//GEN-LAST:event_ExpensePanelMouseReleased
 
     private void addExpenseButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addExpenseButtonMouseClicked
         try {
@@ -463,6 +532,98 @@ public class Expenses extends JFrame {
     private void DelButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DelButtonMouseExited
         DelButton.setBackground(new Color(240,240,240));
     }//GEN-LAST:event_DelButtonMouseExited
+
+    private void GreenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GreenMouseClicked
+        if (evt.getSource() == Green) {
+            Content.setBackground(new Color(51,204,0));
+            Banner.setBackground(new Color(51,153,0));
+            BalancePanel.setBackground(new Color(51,204,0));
+            IncomePanel.setBackground(new Color(51,204,0));
+            ExpensePanel.setBackground(new Color(51,204,0));
+            SettingsPanel.setBackground(new Color(51,153,0));
+            Title.setForeground(new Color(240,240,240));
+            currentExp.setForeground(new Color(240,240,240));
+            balance_title.setForeground(new Color(240,240,240));
+            income_title.setForeground(new Color(240,240,240));
+            expense_title.setForeground(new Color(240,240,240));
+            setting_title.setForeground(new Color(240,240,240));
+            COLOUR.setForeground(new Color(240,240,240));
+            TEXT.setForeground(new Color(240,240,240));
+            JOptionPane.showMessageDialog(null, "Appearance changed");
+            saveStyles(Content.getBackground().getRGB(),Banner.getBackground().getRGB(),Title.getForeground().getRGB());
+        } else {
+            JOptionPane.showMessageDialog(null, "Appearance change failed");
+        }
+    }//GEN-LAST:event_GreenMouseClicked
+
+    private void PinkMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PinkMouseClicked
+        if (evt.getSource() == Pink) {
+            Content.setBackground(new Color(255,0,204));
+            Banner.setBackground(new Color(51,0,51));
+            BalancePanel.setBackground(new Color(255,0,204));
+            IncomePanel.setBackground(new Color(255,0,204));
+            ExpensePanel.setBackground(new Color(255,0,204));
+            SettingsPanel.setBackground(new Color(51,0,51));
+            Title.setForeground(new Color(240,240,240));
+            currentExp.setForeground(new Color(240,240,240));
+            balance_title.setForeground(new Color(240,240,240));
+            income_title.setForeground(new Color(240,240,240));
+            expense_title.setForeground(new Color(240,240,240));
+            setting_title.setForeground(new Color(240,240,240));
+            COLOUR.setForeground(new Color(240,240,240));
+            TEXT.setForeground(new Color(240,240,240));
+            JOptionPane.showMessageDialog(null, "Appearance changed");
+        } else {
+            JOptionPane.showMessageDialog(null, "Appearance change failed");
+            saveStyles(Content.getBackground().getRGB(),Banner.getBackground().getRGB(),Title.getForeground().getRGB());
+        }
+    }//GEN-LAST:event_PinkMouseClicked
+
+    private void WhiteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_WhiteMouseClicked
+        if (evt.getSource() == White) {
+            Content.setBackground(new Color(240,240,240));
+            Banner.setBackground(new Color(204,204,204));
+            BalancePanel.setBackground(new Color(240,240,240));
+            IncomePanel.setBackground(new Color(240,240,240));
+            ExpensePanel.setBackground(new Color(240,240,240));
+            SettingsPanel.setBackground(new Color(204,204,204));
+            Title.setForeground(new Color(0,0,0));
+            currentExp.setForeground(new Color(0,0,0));
+            balance_title.setForeground(new Color(0,0,0));
+            income_title.setForeground(new Color(0,0,0));
+            expense_title.setForeground(new Color(0,0,0));
+            setting_title.setForeground(new Color(0,0,0));
+            COLOUR.setForeground(new Color(0,0,0));
+            TEXT.setForeground(new Color(0,0,0));
+            JOptionPane.showMessageDialog(null, "Appearance changed");
+            saveStyles(Content.getBackground().getRGB(),Banner.getBackground().getRGB(),Title.getForeground().getRGB());
+        } else {
+            JOptionPane.showMessageDialog(null, "Appearance change failed");
+        }
+    }//GEN-LAST:event_WhiteMouseClicked
+
+    private void DefaultMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DefaultMouseClicked
+        if (evt.getSource() == Default) {
+            Content.setBackground(new Color(0,0,95));
+            Banner.setBackground(new Color(51,51,255));
+            BalancePanel.setBackground(new Color(0,0,95));
+            IncomePanel.setBackground(new Color(0,0,95));
+            ExpensePanel.setBackground(new Color(0,0,95));
+            SettingsPanel.setBackground(new Color(51,51,255));
+            Title.setForeground(new Color(240,240,240));
+            currentExp.setForeground(new Color(240,240,240));
+            balance_title.setForeground(new Color(240,240,240));
+            income_title.setForeground(new Color(240,240,240));
+            expense_title.setForeground(new Color(240,240,240));
+            setting_title.setForeground(new Color(240,240,240));
+            COLOUR.setForeground(new Color(240,240,240));
+            TEXT.setForeground(new Color(240,240,240));
+            JOptionPane.showMessageDialog(null, "Appearance changed");
+            saveStyles(Content.getBackground().getRGB(),Banner.getBackground().getRGB(),Title.getForeground().getRGB());
+        } else {
+            JOptionPane.showMessageDialog(null, "Appearance change failed");
+        }
+    }//GEN-LAST:event_DefaultMouseClicked
       
     public void saveRecord() {
         try {
@@ -497,6 +658,48 @@ public class Expenses extends JFrame {
             }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null,"No Records");
+        }
+    }
+    
+    void saveStyles(int num1,int num2,int num3) {
+        try {
+            FileWriter fw = new FileWriter(styleFilePath);
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.write(num1 + "\n" + num2 + "\n" + num3);
+            bw.close();
+            fw.close();
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, "Styles not saved");
+        }
+    }
+    
+    void readStyles() {
+        try {
+            int a = 0, b = 0, c = 0;
+            scan = new Scanner(new FileReader(styleFilePath));
+            while (scan.hasNext()) {
+                a = scan.nextInt();
+                b = scan.nextInt();
+                c = scan.nextInt();
+            }
+            Content.setBackground(new Color(a));
+            Banner.setBackground(new Color(b));
+            BalancePanel.setBackground(new Color(a));
+            IncomePanel.setBackground(new Color(a));
+            ExpensePanel.setBackground(new Color(a));
+            SettingsPanel.setBackground(new Color(b));
+            Title.setForeground(new Color(c));
+            currentExp.setForeground(new Color(c));
+            balance_title.setForeground(new Color(c));
+            income_title.setForeground(new Color(c));
+            expense_title.setForeground(new Color(c));
+            setting_title.setForeground(new Color(c));
+            COLOUR.setForeground(new Color(c));
+            TEXT.setForeground(new Color(c));
+            
+            scan.close();
+        } catch (Exception ex) {
+            
         }
     }
     /**
@@ -541,17 +744,25 @@ public class Expenses extends JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel BalancePanel;
     private javax.swing.JPanel Banner;
+    private javax.swing.JLabel COLOUR;
     private javax.swing.JPanel Content;
+    private javax.swing.JButton Default;
     private javax.swing.JButton DelButton;
     private javax.swing.JPanel ExpensePanel;
+    private javax.swing.JButton Green;
     private javax.swing.JPanel IncomePanel;
+    private javax.swing.JButton Pink;
+    private javax.swing.JPanel SettingsPanel;
+    private javax.swing.JLabel TEXT;
     private javax.swing.JLabel Title;
+    private javax.swing.JButton White;
     private javax.swing.JButton addExpenseButton;
     private javax.swing.JLabel balance_title;
     private javax.swing.JLabel currentExp;
     private javax.swing.JLabel expense_title;
     private javax.swing.JLabel income_title;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel setting_title;
     private javax.swing.JTable table_of_expenses;
     // End of variables declaration//GEN-END:variables
 }
