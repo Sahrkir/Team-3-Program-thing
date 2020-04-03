@@ -56,7 +56,6 @@ public class Incomes extends JFrame {
         SettingsPanel = new javax.swing.JPanel();
         setting_title = new javax.swing.JLabel();
         COLOUR = new javax.swing.JLabel();
-        TEXT = new javax.swing.JLabel();
         Green = new javax.swing.JButton();
         Pink = new javax.swing.JButton();
         White = new javax.swing.JButton();
@@ -261,13 +260,9 @@ public class Incomes extends JFrame {
         setting_title.setForeground(new java.awt.Color(255, 255, 255));
         setting_title.setText("settings: ");
 
-        COLOUR.setFont(new java.awt.Font("Felix Titling", 1, 24)); // NOI18N
+        COLOUR.setFont(new java.awt.Font("Felix Titling", 1, 18)); // NOI18N
         COLOUR.setForeground(new java.awt.Color(255, 255, 255));
         COLOUR.setText("Colours: ");
-
-        TEXT.setFont(new java.awt.Font("Felix Titling", 1, 24)); // NOI18N
-        TEXT.setForeground(new java.awt.Color(255, 255, 255));
-        TEXT.setText("Text:");
 
         Green.setBackground(new java.awt.Color(51, 204, 0));
         Green.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -308,11 +303,6 @@ public class Incomes extends JFrame {
             .addGroup(SettingsPanelLayout.createSequentialGroup()
                 .addGroup(SettingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(SettingsPanelLayout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addComponent(COLOUR)
-                        .addGap(86, 86, 86)
-                        .addComponent(TEXT))
-                    .addGroup(SettingsPanelLayout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addComponent(Default)
                         .addGap(18, 18, 18)
@@ -322,9 +312,12 @@ public class Incomes extends JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(White))
                     .addGroup(SettingsPanelLayout.createSequentialGroup()
-                        .addGap(149, 149, 149)
+                        .addGap(68, 68, 68)
+                        .addComponent(COLOUR))
+                    .addGroup(SettingsPanelLayout.createSequentialGroup()
+                        .addGap(55, 55, 55)
                         .addComponent(setting_title)))
-                .addContainerGap(68, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
         SettingsPanelLayout.setVerticalGroup(
             SettingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -332,9 +325,7 @@ public class Incomes extends JFrame {
                 .addContainerGap()
                 .addComponent(setting_title)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(SettingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(COLOUR)
-                    .addComponent(TEXT))
+                .addComponent(COLOUR)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(SettingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(Pink, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -358,14 +349,14 @@ public class Incomes extends JFrame {
                         .addComponent(newIncButton)
                         .addGap(67, 67, 67)
                         .addComponent(DelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(SettingsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(ContentLayout.createSequentialGroup()
                         .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(BalancePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(IncomePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(ExpensePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(42, 42, 42)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(SettingsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(48, Short.MAX_VALUE))
         );
         ContentLayout.setVerticalGroup(
@@ -388,7 +379,7 @@ public class Incomes extends JFrame {
                 .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(newIncButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(DelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(38, 38, 38)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                 .addComponent(SettingsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -546,7 +537,6 @@ public class Incomes extends JFrame {
             expense_title.setForeground(new Color(240,240,240));
             setting_title.setForeground(new Color(240,240,240));
             COLOUR.setForeground(new Color(240,240,240));
-            TEXT.setForeground(new Color(240,240,240));
             JOptionPane.showMessageDialog(null, "Appearance changed");
             saveStyles(Content.getBackground().getRGB(),Banner.getBackground().getRGB(),Title.getForeground().getRGB());
         } else {
@@ -569,7 +559,6 @@ public class Incomes extends JFrame {
             expense_title.setForeground(new Color(240,240,240));
             setting_title.setForeground(new Color(240,240,240));
             COLOUR.setForeground(new Color(240,240,240));
-            TEXT.setForeground(new Color(240,240,240));
             JOptionPane.showMessageDialog(null, "Appearance changed");
             saveStyles(Content.getBackground().getRGB(),Banner.getBackground().getRGB(),Title.getForeground().getRGB());
         } else {
@@ -592,7 +581,6 @@ public class Incomes extends JFrame {
             expense_title.setForeground(new Color(0,0,0));
             setting_title.setForeground(new Color(0,0,0));
             COLOUR.setForeground(new Color(0,0,0));
-            TEXT.setForeground(new Color(0,0,0));
             JOptionPane.showMessageDialog(null, "Appearance changed");
             saveStyles(Content.getBackground().getRGB(),Banner.getBackground().getRGB(),Title.getForeground().getRGB());
         } else {
@@ -615,7 +603,6 @@ public class Incomes extends JFrame {
             expense_title.setForeground(new Color(240,240,240));
             setting_title.setForeground(new Color(240,240,240));
             COLOUR.setForeground(new Color(240,240,240));
-            TEXT.setForeground(new Color(240,240,240));
             JOptionPane.showMessageDialog(null, "Appearance changed");
             saveStyles(Content.getBackground().getRGB(),Banner.getBackground().getRGB(),Title.getForeground().getRGB());
         } else {
@@ -693,8 +680,6 @@ public class Incomes extends JFrame {
             expense_title.setForeground(new Color(c));
             setting_title.setForeground(new Color(c));
             COLOUR.setForeground(new Color(c));
-            TEXT.setForeground(new Color(c));
-            
             scan.close();
         } catch (Exception ex) {
             
@@ -751,7 +736,6 @@ public class Incomes extends JFrame {
     private javax.swing.JPanel IncomePanel;
     private javax.swing.JButton Pink;
     private javax.swing.JPanel SettingsPanel;
-    private javax.swing.JLabel TEXT;
     private javax.swing.JLabel Title;
     private javax.swing.JButton White;
     private javax.swing.JLabel balance_title;

@@ -44,7 +44,6 @@ public class ExpenseManager extends JFrame {
         SettingsPanel = new javax.swing.JPanel();
         setting_title = new javax.swing.JLabel();
         COLOUR = new javax.swing.JLabel();
-        TEXT = new javax.swing.JLabel();
         Green = new javax.swing.JButton();
         Pink = new javax.swing.JButton();
         White = new javax.swing.JButton();
@@ -202,13 +201,9 @@ public class ExpenseManager extends JFrame {
         setting_title.setForeground(new java.awt.Color(255, 255, 255));
         setting_title.setText("settings: ");
 
-        COLOUR.setFont(new java.awt.Font("Felix Titling", 1, 24)); // NOI18N
+        COLOUR.setFont(new java.awt.Font("Felix Titling", 1, 18)); // NOI18N
         COLOUR.setForeground(new java.awt.Color(255, 255, 255));
         COLOUR.setText("Colours: ");
-
-        TEXT.setFont(new java.awt.Font("Felix Titling", 1, 24)); // NOI18N
-        TEXT.setForeground(new java.awt.Color(255, 255, 255));
-        TEXT.setText("Text:");
 
         Green.setBackground(new java.awt.Color(51, 204, 0));
         Green.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -249,11 +244,6 @@ public class ExpenseManager extends JFrame {
             .addGroup(SettingsPanelLayout.createSequentialGroup()
                 .addGroup(SettingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(SettingsPanelLayout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addComponent(COLOUR)
-                        .addGap(86, 86, 86)
-                        .addComponent(TEXT))
-                    .addGroup(SettingsPanelLayout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addComponent(Default)
                         .addGap(18, 18, 18)
@@ -263,9 +253,13 @@ public class ExpenseManager extends JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(White))
                     .addGroup(SettingsPanelLayout.createSequentialGroup()
-                        .addGap(149, 149, 149)
-                        .addComponent(setting_title)))
-                .addContainerGap(68, Short.MAX_VALUE))
+                        .addGap(68, 68, 68)
+                        .addComponent(COLOUR)))
+                .addContainerGap(38, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SettingsPanelLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(setting_title)
+                .addGap(57, 57, 57))
         );
         SettingsPanelLayout.setVerticalGroup(
             SettingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -273,9 +267,7 @@ public class ExpenseManager extends JFrame {
                 .addContainerGap()
                 .addComponent(setting_title)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(SettingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(COLOUR)
-                    .addComponent(TEXT))
+                .addComponent(COLOUR)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(SettingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(Pink, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -295,7 +287,7 @@ public class ExpenseManager extends JFrame {
                     .addComponent(BalancePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(IncomePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(SettingsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 401, Short.MAX_VALUE))
+                .addGap(0, 562, Short.MAX_VALUE))
         );
         ContentLayout.setVerticalGroup(
             ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -306,7 +298,7 @@ public class ExpenseManager extends JFrame {
                 .addComponent(IncomePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(ExpensePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 123, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 130, Short.MAX_VALUE)
                 .addComponent(SettingsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -422,7 +414,6 @@ public class ExpenseManager extends JFrame {
             expense_title.setForeground(new Color(240,240,240));
             setting_title.setForeground(new Color(240,240,240));
             COLOUR.setForeground(new Color(240,240,240));
-            TEXT.setForeground(new Color(240,240,240));
             JOptionPane.showMessageDialog(null, "Appearance changed");
             saveStyles(Content.getBackground().getRGB(),Banner.getBackground().getRGB(),Title.getForeground().getRGB());
         } else {
@@ -444,7 +435,6 @@ public class ExpenseManager extends JFrame {
             expense_title.setForeground(new Color(240,240,240));
             setting_title.setForeground(new Color(240,240,240));
             COLOUR.setForeground(new Color(240,240,240));
-            TEXT.setForeground(new Color(240,240,240));
             JOptionPane.showMessageDialog(null, "Appearance changed");
             saveStyles(Content.getBackground().getRGB(),Banner.getBackground().getRGB(),Title.getForeground().getRGB());
         } else {
@@ -466,7 +456,6 @@ public class ExpenseManager extends JFrame {
             expense_title.setForeground(new Color(240,240,240));
             setting_title.setForeground(new Color(240,240,240));
             COLOUR.setForeground(new Color(240,240,240));
-            TEXT.setForeground(new Color(240,240,240));
             JOptionPane.showMessageDialog(null, "Appearance changed");
             saveStyles(Content.getBackground().getRGB(),Banner.getBackground().getRGB(),Title.getForeground().getRGB());
         } else {
@@ -488,7 +477,6 @@ public class ExpenseManager extends JFrame {
             expense_title.setForeground(new Color(0,0,0));
             setting_title.setForeground(new Color(0,0,0));
             COLOUR.setForeground(new Color(0,0,0));
-            TEXT.setForeground(new Color(0,0,0));
             JOptionPane.showMessageDialog(null, "Appearance changed");
         } else {
             JOptionPane.showMessageDialog(null, "Appearance change failed");
@@ -527,9 +515,7 @@ public class ExpenseManager extends JFrame {
             income_title.setForeground(new Color(c));
             expense_title.setForeground(new Color(c));
             setting_title.setForeground(new Color(c));
-            COLOUR.setForeground(new Color(c));
-            TEXT.setForeground(new Color(c));
-            
+            COLOUR.setForeground(new Color(c));            
             scan.close();
         } catch (Exception ex) {
             
@@ -585,7 +571,6 @@ public class ExpenseManager extends JFrame {
     private javax.swing.JPanel IncomePanel;
     private javax.swing.JButton Pink;
     private javax.swing.JPanel SettingsPanel;
-    private javax.swing.JLabel TEXT;
     private javax.swing.JLabel Title;
     private javax.swing.JButton White;
     private javax.swing.JLabel balance_title;

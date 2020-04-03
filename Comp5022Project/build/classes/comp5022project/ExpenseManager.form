@@ -109,7 +109,7 @@
                       <Component id="IncomePanel" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="SettingsPanel" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="0" pref="401" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="562" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -122,7 +122,7 @@
                   <Component id="IncomePanel" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                   <Component id="ExpensePanel" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="123" max="32767" attributes="0"/>
+                  <EmptySpace pref="130" max="32767" attributes="0"/>
                   <Component id="SettingsPanel" min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -299,12 +299,6 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
-                              <Component id="COLOUR" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
-                              <Component id="TEXT" min="-2" max="-2" attributes="0"/>
-                          </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                               <Component id="Default" min="-2" max="-2" attributes="0"/>
@@ -316,11 +310,16 @@
                               <Component id="White" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="149" max="-2" attributes="0"/>
-                              <Component id="setting_title" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
+                              <Component id="COLOUR" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="68" max="32767" attributes="0"/>
+                      <EmptySpace pref="38" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="setting_title" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -330,10 +329,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="setting_title" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="COLOUR" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="TEXT" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="COLOUR" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Component id="Pink" min="-2" pref="22" max="-2" attributes="0"/>
@@ -361,23 +357,12 @@
             <Component class="javax.swing.JLabel" name="COLOUR">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Felix Titling" size="24" style="1"/>
+                  <Font name="Felix Titling" size="18" style="1"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Colours: "/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="TEXT">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Felix Titling" size="24" style="1"/>
-                </Property>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Text:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JButton" name="Green">
