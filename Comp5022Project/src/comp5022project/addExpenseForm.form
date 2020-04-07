@@ -142,9 +142,12 @@
                                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                                   <Component id="input_Value" min="-2" pref="205" max="-2" attributes="0"/>
                               </Group>
-                              <Group type="102" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="143" pref="143" max="-2" attributes="0"/>
-                                  <Component id="expAdded" min="-2" pref="90" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="jCheckBox1" max="32767" attributes="0"/>
+                                      <Component id="expAdded" max="32767" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
                       </Group>
@@ -193,7 +196,9 @@
                               <Component id="amount" min="-2" max="-2" attributes="0"/>
                               <Component id="input_Value" min="-2" pref="42" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="50" pref="50" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                          <Component id="jCheckBox1" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Component id="expAdded" min="-2" pref="40" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -621,6 +626,11 @@
             </Component>
           </SubComponents>
         </Container>
+        <Component class="javax.swing.JCheckBox" name="jCheckBox1">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Confirm Input"/>
+          </Properties>
+        </Component>
       </SubComponents>
     </Container>
   </SubComponents>

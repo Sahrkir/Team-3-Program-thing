@@ -64,6 +64,7 @@ public class addExpenseForm extends JFrame {
         Pink = new javax.swing.JButton();
         White = new javax.swing.JButton();
         Default = new javax.swing.JButton();
+        jCheckBox1 = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(800, 800));
@@ -343,6 +344,8 @@ public class addExpenseForm extends JFrame {
                 .addContainerGap(32, Short.MAX_VALUE))
         );
 
+        jCheckBox1.setText("Confirm Input");
+
         javax.swing.GroupLayout ContentLayout = new javax.swing.GroupLayout(Content);
         Content.setLayout(ContentLayout);
         ContentLayout.setHorizontalGroup(
@@ -381,7 +384,9 @@ public class addExpenseForm extends JFrame {
                                 .addComponent(input_Value, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(ContentLayout.createSequentialGroup()
                                 .addGap(143, 143, 143)
-                                .addComponent(expAdded, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jCheckBox1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(expAdded, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                     .addComponent(SettingsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(77, 77, 77))
         );
@@ -417,7 +422,9 @@ public class addExpenseForm extends JFrame {
                         .addGroup(ContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(amount)
                             .addComponent(input_Value, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(50, 50, 50)
+                        .addGap(25, 25, 25)
+                        .addComponent(jCheckBox1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(expAdded, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 98, Short.MAX_VALUE)
                 .addComponent(SettingsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -529,6 +536,11 @@ public class addExpenseForm extends JFrame {
         freq = (String) frequent_Pay.getSelectedItem().toString();
         incomeAmount = input_Value.getText();
         String errorText = "";
+        
+        if(!jCheckBox1.isSelected()){
+            errorDetected = true;
+            errorText += "- Please check the -Confirm Input- box if you are happy with your inputs\n";
+        }
         
         if(type.equals("")){
             errorDetected = true;
@@ -837,6 +849,7 @@ public class addExpenseForm extends JFrame {
     private javax.swing.JLabel income_title;
     private javax.swing.JTextField input_Type;
     private javax.swing.JTextField input_Value;
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel setting_title;
     private javax.swing.JLabel type_Of_Pay;
     private javax.swing.JLabel when;
